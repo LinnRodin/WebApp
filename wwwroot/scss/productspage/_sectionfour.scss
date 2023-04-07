@@ -1,0 +1,41 @@
+.showcasefour {
+    max-width: 1180px;
+    margin: 0 auto;
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+     
+  
+        .left-side {
+            flex: 1;
+           
+            
+            .title {
+                margin-top: 65px;
+                font-size: 18px;
+
+            }
+    
+            .textleft {
+                margin-top: 20px;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+        }
+  
+        .right-side {
+            flex: 0 0 469px;
+            margin-top: 90px;
+    
+            img {
+                max-width: 100%;
+                height: auto;
+           
+            }
+        }
+    }
+}
+  

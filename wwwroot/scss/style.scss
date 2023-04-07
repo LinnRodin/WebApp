@@ -1,0 +1,35 @@
+@import './core/fonts';
+@import './core/colors';
+@import './core/mixins';
+
+//COMPONENETS - HOMEPAGE
+@import './components/utilities';
+@import './components/header';
+@import './components/showcase';
+@import './components/collection';
+@import './components/collectionItem';
+@import './components/uptosell';
+@import './components/topsellingItems';
+@import './components/topsellingproducts';
+@import './components/subscribe';
+@import './components/footer';
+@import './components/forms';
+
+//PRODUCTS PAGE
+@import './productspage/sectionone';
+@import './productspage/sectiontwo';
+@import './productspage/sectionthree';
+@import './productspage/sectionfour';
+@import './productspage/sectionfive';
+@import './productspage/sectionend';
+
+//CONTACT PAGE
+@import './contactpage/contactsection';
+@import './contactpage/map';
+@import './contactpage/breadcrumb';
+
+//Account Page
+@import './accountpage/account';
+
+// Login
+@import './loginpage/loginsection';

@@ -1,0 +1,41 @@
+.imagedisplay-end {
+    height: 285px;
+    width: 100%;
+    background-color: $color-theme-3;
+    
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    
+        .display-end-grid {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 40px;
+          
+            @include md {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @include lg {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @include xl {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+           
+        }
+
+    }
+
+
+}

@@ -1,0 +1,67 @@
+.topsellingproducts {
+    
+    .container {
+        padding-left: 4rem;
+        padding-right: 4rem;
+        
+    }
+
+    .collection-grid {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 40px;
+
+        @include md {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include lg {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @include xl {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .collection-item {
+            .body {
+                display: flex;
+                align-items: flex-start;
+                color: $color-dark-2;
+                margin-top: 10px;
+                font-family: $font-poppins;
+                padding: 0 10px 10px 10px;
+                
+                .infobox {
+        
+                    .title {
+                        font-size: 16px;
+                        font-weight: $font-weight-medium;
+                    }
+                   
+                    .comments {
+
+                        font-family: $font-poppins;
+                        font-size: 11px;
+                        color: $color-dark-3
+                    }
+
+                    .infotext {
+                        margin-top: 7px;
+                    }
+                }
+        
+                .tocart {
+                    padding: 2px;
+                    font-size: 12px;
+                    color: $color-dark-2;
+        
+                    &:hover {
+                        color: $color-dark-4;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

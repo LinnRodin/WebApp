@@ -32,11 +32,12 @@ a {
 button {
     padding: 10px 35px;
     font-family: $font-poppins;
+    text-decoration: none;
     border: 1px solid $color-dark-1;
     background-color: transparent;
     color: $color-dark-1;
     transition: all 0.2s;
-    
+
 
     &:hover {
         background-color: $color-dark-1;
@@ -49,27 +50,40 @@ button {
 // button white theme
 .btn-white {
     border: none;
+    text-decoration: none;
     background-color: $color-white;
     color: $color-dark-2;
-    border : 1px solid $color-dark-2;
+    border: 1px solid $color-dark-2;
     border-radius: 5px;
 }
 
 // button pink theme
 .btn-theme {
+    cursor: pointer;
     border: none;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-family: $font-poppins;
     background-color: $color-theme-1;
     color: $color-white;
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+        color: $color-white;
+        background-color: $color-dark-1;
+        text-decoration: none;
+    }
 }
 
 .btn-toggle {
     font-family: $font-poppins;
+    text-decoration: none;
     font-size: 1.8em;
     padding: 0 !important;
     background-color: transparent;
     border: none !important;
-    
+
     &:hover {
         color: $color-dark-1 !important;
         background-color: transparent !important;
@@ -78,11 +92,12 @@ button {
 
 .btn-toggle-white {
     font-family: $font-poppins;
+    text-decoration: none;
     font-size: 1.8em;
     padding: 0 !important;
     background-color: transparent;
     border: none !important;
-    
+
     &:hover {
         color: $color-dark-3 !important;
         background-color: transparent !important;
@@ -91,6 +106,7 @@ button {
 
 .btn-outline-white {
     font-family: $font-poppins;
+    text-decoration: none;
     padding: 10px 25px;
     border: 1px solid $color-dark-3;
     background-color: $color-white;
@@ -109,6 +125,7 @@ button {
     padding: 10px 25px;
     border: 0px solid $color-white;
     background-color: transparent;
+    text-decoration: none;
     color: $color-white;
     transition: all 0.25s ease-in-out;
 

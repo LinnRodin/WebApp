@@ -33,6 +33,7 @@ a:hover {
 button {
   padding: 10px 35px;
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
   border: 1px solid #000000;
   background-color: transparent;
   color: #000000;
@@ -45,6 +46,7 @@ button:hover {
 
 .btn-white {
   border: none;
+  text-decoration: none;
   background-color: #FFFFFF;
   color: #292929;
   border: 1px solid #292929;
@@ -52,14 +54,25 @@ button:hover {
 }
 
 .btn-theme {
+  cursor: pointer;
   border: none;
+  padding: 10px 25px;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
   background-color: #FA3150;
   color: #FFFFFF;
-  border-radius: 5px;
+  border-radius: 10px;
+  transition: all 0.25s ease-in-out;
+}
+.btn-theme:hover {
+  color: #FFFFFF;
+  background-color: #000000;
+  text-decoration: none;
 }
 
 .btn-toggle {
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
   font-size: 1.8em;
   padding: 0 !important;
   background-color: transparent;
@@ -72,6 +85,7 @@ button:hover {
 
 .btn-toggle-white {
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
   font-size: 1.8em;
   padding: 0 !important;
   background-color: transparent;
@@ -84,6 +98,7 @@ button:hover {
 
 .btn-outline-white {
   font-family: "Poppins", sans-serif;
+  text-decoration: none;
   padding: 10px 25px;
   border: 1px solid #636363;
   background-color: #FFFFFF;
@@ -101,6 +116,7 @@ button:hover {
   padding: 10px 25px;
   border: 0px solid #FFFFFF;
   background-color: transparent;
+  text-decoration: none;
   color: #FFFFFF;
   transition: all 0.25s ease-in-out;
 }

@@ -1,20 +1,28 @@
-﻿using WebApp.ViewModels;
+﻿using WebApp.Models;
+using WebApp.ViewModels;
 
 namespace WebApp.Services;
 
 public class ShowcaseService
 {
-    private ShowcaseViewModel showcase = new ShowcaseViewModel()
+    private readonly List<ShowcaseModel> _showcases = new()
     {
-        Ingress = "WELCOME TO BMERKETO SHOP",
-        Title = "Exclusive Chair Gold Collection.",
-        LinkContent = "SHOP NOW",
-        LinkUrl = "/products",
-        ImageUrl = "images/placeholders/Stol.png"
+        new ShowcaseModel()
+        {
+            Ingress = "WELCOME TO BMERKETO SHOP",
+            Title = "Exclusive Chair Gold Collection.",
+            ImageUrl = "images/placeholders/Stol.png",
+            Button = new LinkButtonModel
+            {
+                Content = "SHOP NOW",
+                Url = "/products",
+            }
+        }
+
     };
 
-    public ShowcaseViewModel GetLatestShowcase()
-    { 
-        return showcase; 
+    public ShowcaseModel GetLatestShowcase()
+    {
+        return _showcases.LastOrDefault()!;
     }
 }

@@ -1,6 +1,4 @@
-﻿@inject ShowcaseService showcaseService
-
-@{
+﻿@{
     var showcase = showcaseService.GetLatestShowcase();
 }
 
@@ -12,9 +10,9 @@
                 <div class="ingress">@showcase?.Ingress</div>
                 <div class="title">@showcase?.Title</div>
 
-                @if (!string.IsNullOrEmpty(showcase?.LinkUrl) && !string.IsNullOrEmpty(showcase?.LinkContent))
+                @if (!string.IsNullOrEmpty(showcase?.Button?.Url) && !string.IsNullOrEmpty(showcase?.Button?.Content))
                 {
-                    <a href="@showcase?.LinkUrl" class="btn-theme">@showcase?.LinkContent</a>
+                    <a href="@showcase?.Button?.Url" class="btn-theme">@showcase?.Button?.Content</a>
                 }
 
             </div>

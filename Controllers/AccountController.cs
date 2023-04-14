@@ -12,7 +12,11 @@ public class AccountController : Controller
 
     [HttpPost]
     public IActionResult Register(RegisterViewModel registerViewModel)
-    {
+    {   
+        if (ModelState.IsValid) 
+        { 
+        
+        }
         return View(registerViewModel);
     }
 

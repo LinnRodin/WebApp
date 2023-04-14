@@ -8,59 +8,59 @@
     <div class="container">
         <div class="title">Don't have an account yet? Please sign up below</div>
 
-        <form asp-action="Register" method="post" novalidate>
+        <form asp-action="Register" id="register-form" method="post" novalidate>
             <div class="name form-group">
-                <label asp-for="FirstName">Firstname*</label>
-                <input id="firstname" type="text" class="invalid" asp-for="FirstName" required>
-                <span class="error">Your name is required</span>
+                <label asp-for="FirstName"></label>
+                <input id="firstname" type="text" asp-for="FirstName" />
+                <small><span asp-validation-for="FirstName" class="text-danger"></span></small>
             </div>
             <div class="lastname form-group">
-                <label asp-for="LastName">LastName*</label>
-                <input id="lastname" type="text" class="invalid" asp-for="LastName" required>
-                <span class="error">Your lastname is required</span>
+                <label asp-for="LastName"></label>
+                <input id="lastname" type="text" asp-for="LastName" />
+                <small><span asp-validation-for="LastName" class="text-danger"></span></small>
             </div>
             <div class="streetname form-group">
-                <label asp-for="StreetName">Streetname (optional)</label>
-                <input id="streetname" type="text" class="invalid" asp-for="StreetName">
+                <label asp-for="StreetName"></label>
+                <input id="streetname" type="text" asp-for="StreetName"/>
             </div>
             <div class="postalcode form-group">
-                <label asp-for="PostalCode">Postalcode (optional)</label>
-                <input id="postalcode" type="text" asp-for="PostalCode">
+                <label asp-for="PostalCode"></label>
+                <input id="postalcode" type="text" asp-for="PostalCode" />
             </div>
             <div class="city form-group">
-                <label asp-for="City">City (optional)</label>
-                <input id="city" type="text" asp-for="City">
+                <label asp-for="City"></label>
+                <input id="city" type="text" asp-for="City" />
             </div>
             <div class="phoneNumber form-group">
-                <label asp-for="PhoneNumber">PhoneNumber (optional)</label>
-                <input id="phone" type="text" asp-for="PhoneNumber">
+                <label asp-for="PhoneNumber"></label>
+                <input id="phone" type="text" asp-for="PhoneNumber" />
             </div>
             <div class="companyName form-group">
-                <label asp-for="CompanyName">Company (optional)</label>
-                <input id="company" type="text" asp-for="CompanyName">
+                <label asp-for="CompanyName"></label>
+                <input id="company" type="text" asp-for="CompanyName" />
             </div>
             <div class="email form-group">
-                <label asp-for="Email">Email*</label>
-                <input id="email" type="email" class="invalid" asp-for="Email" required>
-                <span class="error">Your email is required</span>
+                <label asp-for="Email"></label>
+                <input id="email" type="email" asp-for="Email" />
+                <small><span asp-validation-for="Email" class="text-danger"></span></small>
             </div>
             <div class="password form-group">
-                <label asp-for="Password">Password*</label>
-                <input id="password" type="password" asp-for="Password">
-                <span class="error">password is required</span>
+                <label asp-for="Password"></label>
+                <input id="password" type="password" asp-for="Password" />
+                <small><span asp-validation-for="Password" class="text-danger"></span></small>
             </div>
             <div class="confirm-password form-group">
-                <label asp-for="ConfirmPassword">Confirm Password*</label>
-                <input id="confirm-password" type="password" asp-for="ConfirmPassword">
-                <span class="error">confirm password is required</span>
+                <label asp-for="ConfirmPassword"></label>
+                <input id="confirm-password" type="password" asp-for="ConfirmPassword" />
+                <small><span asp-validation-for="ConfirmPassword" class="text-danger"></span></small>
             </div>
             <div class="upload image form-group">
-                <label asp-for="Image">Upload Profile Image (optional)</label>
-                <input id="upload-image" type="text" asp-for="Image">
+                <label asp-for="Image"></label>
+                <input id="upload-image" type="text" asp-for="Image" />
             </div>
             <div class="message form-group">
-                <label asp-for="Message">Message</label>
-                <textarea id="message" class="invalid" asp-for="Message"></textarea>
+                <label asp-for="Message"></label>
+                <textarea id="message" asp-for="Message"></textarea>
             </div>
             <div class="terms form-checkbox-group">
                 <label class="account-checkbox">
@@ -69,7 +69,7 @@
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button class="btn-theme">Submit <i class="fa-solid fa-paintbrush-fine"></i></button>
+            <button id="submit-btn" class="btn-theme">Submit <i class="fa-solid fa-paintbrush-fine"></i></button>
         </form>
       </div>
 </section>

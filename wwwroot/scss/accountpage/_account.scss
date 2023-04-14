@@ -85,10 +85,10 @@
          button {
           margin-top: 20px;
       
-          @include lg {
-            margin-top: 0;
-          }
-        }
+              @include lg {
+                margin-top: 0;
+              }
+         }
 
         
     }

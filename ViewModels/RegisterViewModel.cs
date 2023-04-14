@@ -35,7 +35,6 @@ public class RegisterViewModel
     public string ConfirmPassword { get; set; } = null!;
 
 
-
     [Display(Name = "Companyname")]
     public string? CompanyName { get; set; }
 

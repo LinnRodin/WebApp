@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using WebApp.Contexts;
 using WebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ShowcaseService>();
 
-
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("sql")));
 
 var app = builder.Build();
 app.UseHttpsRedirection();

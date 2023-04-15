@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApp.Models.Entities;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
@@ -14,16 +15,15 @@ public class AccountController : Controller
     public IActionResult Register(RegisterViewModel registerViewModel)
     {   
         if (ModelState.IsValid) 
-        { 
-        
+        {
+            UserEntity userEntity = registerViewModel;
+            ProfileEntity profileEntity = registerViewModel;
+            profileEntity.UserId = userEntity.Id;
         }
+
+
         return View(registerViewModel);
     }
-
-
-
-
-
 
 
 

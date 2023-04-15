@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using WebApp.Models.Entities;
 
 namespace WebApp.ViewModels;
 
@@ -34,6 +35,8 @@ public class RegisterViewModel
     [Compare(nameof(Password), ErrorMessage = "The password does not match")]
     public string ConfirmPassword { get; set; } = null!;
 
+    [Required(ErrorMessage = "You must accept the terms and agreements to proceed.")]
+    public bool AcceptedTerms { get; set; }
 
     [Display(Name = "Companyname")]
     public string? CompanyName { get; set; }
@@ -51,9 +54,40 @@ public class RegisterViewModel
     public string? City { get; set; }
 
     [Display(Name = "Image")]
-    public string? Image { get; set; }
+    public IFormFile? Image { get; set; }
 
     [Display(Name = "Message")]
     public string? Message { get; set; }
+
+
+
+    public static implicit operator UserEntity (RegisterViewModel registerViewModel)
+    {
+
+        var userEntity = new UserEntity { Email = registerViewModel.Email };
+        userEntity.GenerateSecurePassword(registerViewModel.Password);
+        return userEntity;
+
+    }
+
+    public static implicit operator ProfileEntity (RegisterViewModel registerViewModel)
+    {
+        var profileEntity = new ProfileEntity
+        {
+            FirstName = registerViewModel.FirstName,
+            LastName = registerViewModel.LastName,
+            StreetName = registerViewModel.StreetName,
+            PostalCode = registerViewModel.PostalCode,
+            City = registerViewModel.City,
+            PhoneNumber = registerViewModel.PhoneNumber,
+            Message = registerViewModel.Message
+
+        };
+
+        return profileEntity;
+
+
+
+    }
 
 }

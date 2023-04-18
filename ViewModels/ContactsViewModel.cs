@@ -16,7 +16,7 @@ public class ContactsViewModel
     public string Email { get; set; } = null!;
 
     [Display(Name = "Save my name and email in this browser for the next time I comment.")]
-    public bool? AcceptedData { get; set; }
+    public bool AcceptedData { get; set; }
 
     [Display(Name = "Phonenumber")]
     public string? PhoneNumber { get; set; }

@@ -1,0 +1,26 @@
+﻿
+<section class="login-section">
+    <div class="container">
+        <div class="title">Please Login To Your Account.</div>
+        <form novalidate>
+            <div class="email form-group">
+                <label asp-for="Email">E-mail*</label>
+                <input asp-for="Email" id="email" type="text" class="invalid">
+                <span asp-validation-for="Email" class="error">Your email is required</span>
+            </div>
+            <div class="password form-group">
+                <label asp-for="Password">Password*</label>
+                <input asp-for="Password" id="password" type="password">
+                <span asp-validation-for="Password" class="error">Password is required</span>
+            </div>
+            <div class="terms form-checkbox-group">
+                <label asp-for="RememberLogin" class="login-checkbox">
+                     Please keep me logged in.
+                    <input asp-for="RememberLogin" type="checkbox" checked="checked">
+                    <span asp-validation-for="RememberLogin" class="checkmark"></span>
+                </label>
+            </div>
+            <button class="btn-theme">Submit <i class="fa-solid fa-paintbrush-fine"></i></button>
+        </form>
+    </div>
+</section>

@@ -38,10 +38,10 @@ public class RegisterViewModel
     [Required(ErrorMessage = "You must accept the terms and agreements to proceed.")]
     public bool AcceptedTerms { get; set; }
 
-    [Display(Name = "Companyname")]
+    [Display(Name = "Company")]
     public string? CompanyName { get; set; }
 
-    [Display(Name = "Phonenumber")]
+    [Display(Name = "Mobile")]
     public string? PhoneNumber { get; set; }
 
     [Display(Name = "Streetname")]
@@ -53,7 +53,8 @@ public class RegisterViewModel
     [Display(Name = "City")]
     public string? City { get; set; }
 
-    [Display(Name = "Image")]
+    [DataType(DataType.Upload)]
+    [Display(Name = "Upload Image")]
     public IFormFile? Image { get; set; }
 
     [Display(Name = "Message")]

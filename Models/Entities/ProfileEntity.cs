@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Models.Entities;
 
 public class ProfileEntity 
 {
-    [Key]
+    [Key, ForeignKey("User")]
     public Guid UserId { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;

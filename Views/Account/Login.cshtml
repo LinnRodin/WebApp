@@ -1,8 +1,18 @@
-﻿
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login to your account";
+}
+
+
 <section class="login-section">
     <div class="container">
         <div class="title">Please Login To Your Account.</div>
-        <form novalidate>
+
+        <form method="post" novalidate>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="email form-group">
                 <label asp-for="Email">E-mail*</label>
                 <input asp-for="Email" id="email" type="text" class="invalid">
@@ -15,12 +25,12 @@
             </div>
             <div class="terms form-checkbox-group">
                 <label asp-for="RememberLogin" class="login-checkbox">
-                     Please keep me logged in.
+                    Please keep me logged in.
                     <input asp-for="RememberLogin" type="checkbox" checked="checked">
                     <span asp-validation-for="RememberLogin" class="checkmark"></span>
                 </label>
             </div>
-            <button class="btn-theme">Submit <i class="fa-solid fa-paintbrush-fine"></i></button>
+            <button class="btn-theme">Login<i class="fa-solid fa-paintbrush-fine"></i></button>
         </form>
     </div>
 </section>

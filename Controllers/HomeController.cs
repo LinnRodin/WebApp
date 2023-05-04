@@ -1,6 +1,132 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApp.Contexts;
 using WebApp.ViewModels;
 
+
+
+public class HomeController : Controller
+{
+    private readonly DataContext _context;
+
+    public HomeController(DataContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult Index()
+    {
+        var BestCollection = _context.Products
+            .Where(p => p.Category.Name == "Featured")
+            .Select(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Description = p.Description,
+                Category = p.Category.Name
+            }).Take(8)
+            .ToList();
+
+        var UpToSale = _context.Products
+            .Where(p => p.Category.Name == "New")
+            .Select(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Description = p.Description,
+                Category = p.Category.Name
+            }).Take(3)
+            .ToList();
+
+        var TopSellProducts = _context.Products
+            .Where(p => p.Category.Name == "Popular")
+            .Select(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Description = p.Description,
+                Category = p.Category.Name
+            }).Take(7)
+            .ToList();
+      
+
+        var TopProducts = _context.Products
+            .Where(p => p.Category.Name == "New")
+            .Select(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Description = p.Description,
+                Category = p.Category.Name
+            }).Take(3)
+            .ToList();
+
+
+
+        var NewProductsList = TopProducts.Concat(TopSellProducts).ToList();
+
+        var viewModel = new HomeIndexViewModel
+        {
+            NewProducts = new GridCollectionViewModel
+            {
+                Title = "New Products",
+                GridCards = NewProductsList.Cast<GridCollectionItemViewModel>().ToList()
+            },
+            PopularProducts = new GridCollectionViewModel
+            {
+                Title = "Popular Products",
+                GridCards = UpToSale.Cast<GridCollectionItemViewModel>().ToList()
+            },
+            FeaturedProducts = new GridCollectionViewModel
+            {
+                Title = "Best Collection",
+                Categories = new List<string> { "All", "Bags", "Dresses", "Decorations", "Essentials", "Interior", "Laptops", "Mobile", "MakeUp" },
+                GridCards = BestCollection.Cast<GridCollectionItemViewModel>().ToList()
+            }
+        };
+
+
+        return View(viewModel);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
@@ -34,3 +160,5 @@ namespace WebApp.Controllers
         }
     }
 }
+
+*/

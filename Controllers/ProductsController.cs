@@ -17,51 +17,21 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            var newProducts = _context.Products.Where(p => p.Category == "new").ToList();
-            var popularProducts = _context.Products.Where(p => p.Category == "popular").ToList();
-            var featuredProducts = _context.Products.Where(p => p.Category == "featured").ToList();
+            var allProducts = _context.Products.ToList();
 
             var viewModel = new ProductsIndexViewModel
             {
-                NewProducts = new GridCollectionViewModel
+                AllProducts = new GridCollectionViewModel
                 {
-                    Title = "New Products",
-                    GridCards = newProducts.Select(p => new ProductViewModel
+                    Title = "All Products",
+                    GridCards = allProducts.Select(p => new ProductViewModel
                     {
                         Id = p.Id,
                         Name = p.Name,
                         Price = p.Price,
                         ImageUrl = p.ImageUrl,
                         Description = p.Description,
-                        Category = p.Category
-                    }).Cast<GridCollectionItemViewModel>()
-                        .ToList()
-                },
-                PopularProducts = new GridCollectionViewModel
-                {
-                    Title = "Popular Products",
-                    GridCards = popularProducts.Select(p => new ProductViewModel
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Price = p.Price,
-                        ImageUrl = p.ImageUrl,
-                        Description = p.Description,
-                        Category= p.Category
-                    }).Cast<GridCollectionItemViewModel>()
-                        .ToList()
-                },
-                FeaturedProducts = new GridCollectionViewModel
-                {
-                    Title = "Featured Products",
-                    GridCards = featuredProducts.Select(p => new ProductViewModel
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Price = p.Price,
-                        ImageUrl = p.ImageUrl,
-                        Description = p.Description,
-                        Category= p.Category
+                        Category = p.Category.Name
                     }).Cast<GridCollectionItemViewModel>()
                         .ToList()
                 }
@@ -69,6 +39,7 @@ namespace WebApp.Controllers
 
             return View(viewModel);
         }
+
     }
 }
 

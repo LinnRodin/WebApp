@@ -23,8 +23,8 @@ public class HomeController : Controller
                 Name = p.Name,
                 Price = p.Price,
                 ImageUrl = p.ImageUrl,
-                Description = p.Description,
-                Category = p.Category.Name
+                Description = p.Description
+                
             }).Take(8)
             .ToList();
 
@@ -36,8 +36,8 @@ public class HomeController : Controller
                 Name = p.Name,
                 Price = p.Price,
                 ImageUrl = p.ImageUrl,
-                Description = p.Description,
-                Category = p.Category.Name
+                Description = p.Description
+                
             }).Take(3)
             .ToList();
 
@@ -49,8 +49,8 @@ public class HomeController : Controller
                 Name = p.Name,
                 Price = p.Price,
                 ImageUrl = p.ImageUrl,
-                Description = p.Description,
-                Category = p.Category.Name
+                Description = p.Description
+                
             }).Take(7)
             .ToList();
       
@@ -63,8 +63,8 @@ public class HomeController : Controller
                 Name = p.Name,
                 Price = p.Price,
                 ImageUrl = p.ImageUrl,
-                Description = p.Description,
-                Category = p.Category.Name
+                Description = p.Description
+                
             }).Take(3)
             .ToList();
 

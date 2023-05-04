@@ -30,8 +30,7 @@ namespace WebApp.Controllers
                         Name = p.Name,
                         Price = p.Price,
                         ImageUrl = p.ImageUrl,
-                        Description = p.Description,
-                        Category = p.Category.Name
+                        Description = p.Description
                     }).Cast<GridCollectionItemViewModel>()
                         .ToList()
                 }
@@ -39,6 +38,29 @@ namespace WebApp.Controllers
 
             return View(viewModel);
         }
+
+
+        public IActionResult Details(int id)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new ProductDetailsViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                Description = product.Description
+            };
+
+            return View(viewModel);
+        }
+
 
     }
 }

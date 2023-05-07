@@ -5,7 +5,7 @@ namespace WebApp.Models.Entities;
 
 public class ProfileEntity 
 {
-    [Key, ForeignKey("User")]
+    [Key, ForeignKey(nameof(User))]
     public Guid UserId { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;

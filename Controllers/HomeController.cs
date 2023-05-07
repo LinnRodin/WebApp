@@ -15,7 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var BestCollection = _context.Products
+            var BestCollection = _context.Products
             .Where(p => p.Category.Name == "Featured")
             .Select(p => new ProductViewModel
             {
@@ -28,7 +28,7 @@ public class HomeController : Controller
             }).Take(8)
             .ToList();
 
-        var UpToSale = _context.Products
+            var UpToSale = _context.Products
             .Where(p => p.Category.Name == "New")
             .Select(p => new ProductViewModel
             {
@@ -41,7 +41,7 @@ public class HomeController : Controller
             }).Take(3)
             .ToList();
 
-        var TopSellProducts = _context.Products
+            var TopSellProducts = _context.Products
             .Where(p => p.Category.Name == "Popular")
             .Select(p => new ProductViewModel
             {
@@ -55,7 +55,7 @@ public class HomeController : Controller
             .ToList();
       
 
-        var TopProducts = _context.Products
+             var TopProducts = _context.Products
             .Where(p => p.Category.Name == "New")
             .Select(p => new ProductViewModel
             {

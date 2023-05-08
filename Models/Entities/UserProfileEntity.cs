@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Models.Entities;
@@ -19,6 +20,6 @@ public class UserProfileEntity
 
 
     
-    public UserEntity User { get; set; } = null!;
+    public IdentityUser User { get; set; } = null!;
 
 }

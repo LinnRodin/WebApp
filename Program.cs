@@ -11,6 +11,7 @@ builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<UserService>();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("sql")));
+builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("IdentityDatabase")));
 
 var app = builder.Build();
 app.UseHttpsRedirection();

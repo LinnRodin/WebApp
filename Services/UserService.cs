@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using WebApp.Contexts;
 using WebApp.Models.Entities;
@@ -9,18 +10,31 @@ namespace WebApp.Services;
 public class UserService
 {
 
-    private readonly DataContext _context;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public UserService(DataContext context)
+    public UserService(UserManager<IdentityUser> userManager)
     {
-        _context = context;
+        _userManager = userManager;
     }
 
 
 
-    public async Task<bool> CheckUserExists(Expression<Func<UserEntity, bool>> predicate )
+    public async Task<bool> SignUpAsync(RegisterViewModel registerViewmodel)
     {
-        if (!await _context.Users.AnyAsync(predicate))
+        IdentityUser identityUser = registerViewmodel;
+        var result = await _userManager.CreateAsync(identityUser, registerViewmodel.Password);
+
+
+
+        return false;
+
+
+    }
+
+
+    /*public async Task<bool> CheckUserExists(Expression<Func<UserEntity, bool>> predicate )
+    {
+        if (!await _userManager.Users.AnyAsync(predicate))
            return true; 
         
         return false;
@@ -29,7 +43,7 @@ public class UserService
 
     public async Task<UserEntity> GetUserAsync(Expression<Func<UserEntity, bool>> predicate)
     {   
-        var UserEntity = await _context.Users.FirstOrDefaultAsync(predicate);
+        var UserEntity = await _userManager.Users.FirstOrDefaultAsync(predicate);
             return UserEntity!;
     }
 
@@ -46,13 +60,13 @@ public class UserService
             UserProfileEntity profileEntity = registerViewModel;
 
             //Skapar användare
-            _context.Users.Add(userEntity);
-            await _context.SaveChangesAsync();
+            _userManager.Users.Add(userEntity);
+            await _userManager.SaveChangesAsync();
 
             //Skapar användarprofil
             profileEntity.UserId = userEntity.Id;
-            _context.Profiles.Add(profileEntity);
-            await _context.SaveChangesAsync();
+            _userManager.Profiles.Add(profileEntity);
+            await _userManager.SaveChangesAsync();
 
             return true; 
 
@@ -76,5 +90,5 @@ public class UserService
             return userEntity.VerifySecurePassword(loginViewModel.Password);
 
         return false;
-    }
+    } */
 }

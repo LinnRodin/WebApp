@@ -34,7 +34,7 @@ public class AccountController : Controller
             else 
             {
                 if (await _userService.RegisterAsync(registerViewModel))
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 else
                     ModelState.AddModelError("", "Something went wrong when trying to create a userprofile");
             }
@@ -60,10 +60,10 @@ public class AccountController : Controller
         if (ModelState.IsValid)
         {
             if (await _userService.LoginAsync(loginViewModel))
-             return RedirectToAction("Index", "Account");
+             return RedirectToAction("Index");
 
 
-           ModelState.AddModelError("", "Wrong email or password");
+           ModelState.AddModelError("", "A user with the same email already exists");
 
         }
 

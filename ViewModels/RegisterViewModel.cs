@@ -85,7 +85,6 @@ public class RegisterViewModel
             StreetName = registerViewModel.StreetName,
             PostalCode = registerViewModel.PostalCode,
             City = registerViewModel.City,
-            PhoneNumber = registerViewModel.PhoneNumber,
             Message = registerViewModel.Message
 
         };

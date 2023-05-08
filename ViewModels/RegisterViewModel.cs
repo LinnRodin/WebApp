@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using WebApp.Models.Entities;
 
@@ -62,19 +63,23 @@ public class RegisterViewModel
 
 
 
-    public static implicit operator UserEntity (RegisterViewModel registerViewModel)
+    public static implicit operator IdentityUser(RegisterViewModel registerViewModel)
     {
 
-        var userEntity = new UserEntity { Email = registerViewModel.Email };
-        userEntity.GenerateSecurePassword(registerViewModel.Password);
-        return userEntity;
+        return new IdentityUser
+        {
+            UserName = registerViewModel.Email,
+            Email = registerViewModel.Email, 
+            PhoneNumber = registerViewModel.PhoneNumber,
+        };
 
     }
 
     public static implicit operator UserProfileEntity (RegisterViewModel registerViewModel)
     {
-        var profileEntity = new UserProfileEntity
-        {
+        return new UserProfileEntity 
+        {   
+            
             FirstName = registerViewModel.FirstName,
             LastName = registerViewModel.LastName,
             StreetName = registerViewModel.StreetName,
@@ -85,7 +90,7 @@ public class RegisterViewModel
 
         };
 
-        return profileEntity;
+        
 
 
 

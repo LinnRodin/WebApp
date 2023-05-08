@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.Services;
 using WebApp.ViewModels;
 
@@ -14,6 +15,7 @@ public class AccountController : Controller
         _userService = userService;
     }
 
+    [Authorize]
     public IActionResult Register()
     {
         return View();

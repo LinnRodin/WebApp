@@ -71,9 +71,9 @@ public class RegisterViewModel
 
     }
 
-    public static implicit operator ProfileEntity (RegisterViewModel registerViewModel)
+    public static implicit operator UserProfileEntity (RegisterViewModel registerViewModel)
     {
-        var profileEntity = new ProfileEntity
+        var profileEntity = new UserProfileEntity
         {
             FirstName = registerViewModel.FirstName,
             LastName = registerViewModel.LastName,

@@ -43,7 +43,7 @@ public class UserService
 
             //Konverterar till userentity och profileentity från reg.formulär
             UserEntity userEntity = registerViewModel;
-            ProfileEntity profileEntity = registerViewModel;
+            UserProfileEntity profileEntity = registerViewModel;
 
             //Skapar användare
             _context.Users.Add(userEntity);

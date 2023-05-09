@@ -10,7 +10,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ShowcaseService>();
 builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<UserAuthService>();
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<IdentityContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(x =>
+{
+    x.SignIn.RequireConfirmedAccount = false;
+    x.Password.RequiredLength = 8;
+    x.User.RequireUniqueEmail = false;
+
+}).AddEntityFrameworkStores<IdentityContext>();
 
 //Contexts
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("sql")));

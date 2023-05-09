@@ -15,11 +15,7 @@ public class AccountController : Controller
         _auth = auth;
     }
 
-    [Authorize]
-    public IActionResult Register()
-    {
-        return View();
-    }
+ 
 
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
@@ -52,15 +48,21 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            if (await _auth.LoginAsync(loginViewModel))
+            if (await _auth.SignInAsync(loginViewModel))
              return RedirectToAction("Index");
 
 
-           ModelState.AddModelError("", "A user with the same email already exists");
+           ModelState.AddModelError("", "Incorrect email or password");
 
         }
 
         return View(loginViewModel);
+    }
+
+    [Authorize]
+    public IActionResult Register()
+    {
+        return View();
     }
 
 

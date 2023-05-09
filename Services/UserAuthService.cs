@@ -11,17 +11,19 @@ public class UserAuthService
 {
 
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly SignInManager<IdentityUser> _signInManager;
     private readonly IdentityContext _identityContext;
 
-    public UserAuthService(UserManager<IdentityUser> userManager, IdentityContext identityContext)
+    public UserAuthService(UserManager<IdentityUser> userManager, IdentityContext identityContext, SignInManager<IdentityUser> signInManager)
     {
         _userManager = userManager;
         _identityContext = identityContext;
+        _signInManager = signInManager;
     }
 
 
 
-   
+
     public async Task<bool> SignUpAsync(RegisterViewModel registerViewmodel)
     {
         try
@@ -34,7 +36,7 @@ public class UserAuthService
             userprofileEntity.UserId = identityUser.Id;
 
             //sparar ner till identitycontext
-            _identityContext.UserProfiles.Add(registerViewmodel);
+            _identityContext.UserProfiles.Add(userprofileEntity);
             await _identityContext.SaveChangesAsync();
 
             return true;
@@ -44,6 +46,21 @@ public class UserAuthService
         }
         catch { return false; }
             
+    }
+
+
+    //Login
+    public async Task<bool> SignInAsync(LoginViewModel loginViewModel)
+    {
+        try
+        {
+
+            var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, loginViewModel.RememberLogin, false);
+
+            return result.Succeeded;
+        }
+        catch { return false; }
+
     }
 
 }

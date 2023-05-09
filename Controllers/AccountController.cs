@@ -66,6 +66,14 @@ public class AccountController : Controller
     }
 
 
+    [Authorize]
+    public IActionResult SignOut()
+    {
+        return View();
+    }
+
+
+
 
     public IActionResult Index()
     {

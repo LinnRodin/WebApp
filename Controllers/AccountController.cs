@@ -8,11 +8,11 @@ namespace WebApp.Controllers;
 public class AccountController : Controller
 {
 
-    private readonly UserService _userService;
+    private readonly UserAuthService _auth;
 
-    public AccountController(UserService userService)
+    public AccountController(UserAuthService auth)
     {
-        _userService = userService;
+        _auth = auth;
     }
 
     [Authorize]
@@ -23,31 +23,24 @@ public class AccountController : Controller
 
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
-    {   
-        if (ModelState.IsValid) 
+    {
+        if (ModelState.IsValid)
         {
-
-            if (await _userService.CheckUserExists(x => x.Email == registerViewModel.Email))
+            if (await _auth.SignUpAsync(registerViewModel))
             {
-                ModelState.AddModelError("", "A user with the same Email already exists");
+                return RedirectToAction("Login", "Account");
             }
-            else 
+            else
             {
-                if (await _userService.RegisterAsync(registerViewModel))
-                    return RedirectToAction("Login", "Account");
-                else
-                    ModelState.AddModelError("", "Something went wrong when trying to create a userprofile");
+                ModelState.AddModelError("", "A user with the same email already exists");
             }
-        
-
         }
 
-        return View(registerViewModel);   
-    
-
+        return View(registerViewModel);
     }
 
-       
+
+
 
     public IActionResult Login()
     {
@@ -59,7 +52,7 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            if (await _userService.LoginAsync(loginViewModel))
+            if (await _auth.LoginAsync(loginViewModel))
              return RedirectToAction("Index");
 
 

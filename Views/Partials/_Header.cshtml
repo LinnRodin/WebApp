@@ -1,4 +1,5 @@
-﻿<header>
+﻿
+<header>
     <div class="container">
         <div class="logo"><img src="images/logo.svg" alt=""></div>
         <nav id="menu" class="menu-links">
@@ -8,8 +9,16 @@
         </nav>
         <nav class="menu-icons">
             <a class="link" asp-controller="products" asp-action="search"><i class="fa-regular fa-search"></i></a>
-            <a class="link" asp-controller="account" asp-action="register">SignUp</a>
-            <a class="link" asp-controller="account" asp-action="login">LogOn</a>
+            @if(signInManager.IsSignedIn(User))
+            {
+                <a class="link" asp-controller="account" asp-action="SignOut">SignOut</a>
+            }
+            else
+            {
+                <a class="link" asp-controller="account" asp-action="register">SignUp</a>
+                <a class="link" asp-controller="account" asp-action="login">LogOn</a>
+            }
+         
             <a class="link" asp-controller="account" asp-action="index">Account</a>
             <a class="link" asp-controller="shopping" asp-action="chart"><i class="fa-solid fa-cart-shopping"></i></a>
         </nav>

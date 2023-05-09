@@ -15,7 +15,13 @@ public class AccountController : Controller
         _auth = auth;
     }
 
- 
+
+    [Authorize]
+    public IActionResult Register()
+    {
+        return View();
+    }
+
 
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
@@ -57,12 +63,6 @@ public class AccountController : Controller
         }
 
         return View(loginViewModel);
-    }
-
-    [Authorize]
-    public IActionResult Register()
-    {
-        return View();
     }
 
 

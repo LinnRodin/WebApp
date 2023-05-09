@@ -1,4 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> signInManager
+@inject UserManager<IdentityUser> userManager
 @using WebApp.ViewModels;
 @using WebApp.Services;
 @inject ShowcaseService showcaseService

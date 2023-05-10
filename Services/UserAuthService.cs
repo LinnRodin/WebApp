@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using WebApp.Contexts;
 using WebApp.Models.Entities;
 using WebApp.ViewModels;
@@ -60,6 +61,17 @@ public class UserAuthService
             return result.Succeeded;
         }
         catch { return false; }
+
+    }
+
+
+    public async Task<bool> SignOutAsync(ClaimsPrincipal user)
+    {
+
+         await _signInManager.SignOutAsync();
+         return _signInManager.IsSignedIn(user);
+
+
 
     }
 

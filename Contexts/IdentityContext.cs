@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using WebApp.Models.Entities;
 
 namespace WebApp.Contexts
@@ -16,16 +17,26 @@ namespace WebApp.Contexts
 
         public DbSet<UserProfileEntity> UserProfiles { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            if (!_roleManager.RoleExistsAsync("admin").Result)
-                _roleManager.CreateAsync(new IdentityRole("admin")).Wait();
+            using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                if (!_roleManager.RoleExistsAsync("user").Result)
-                _roleManager.CreateAsync(new IdentityRole("user")).Wait();
+                if (!roleManager.RoleExistsAsync("admin").Result)
+                {
+                    roleManager.CreateAsync(new IdentityRole("admin")).Wait();
+                }
 
+                if (!roleManager.RoleExistsAsync("user").Result)
+                {
+                    roleManager.CreateAsync(new IdentityRole("user")).Wait();
+                }
+            }
         }
+
     }
 }

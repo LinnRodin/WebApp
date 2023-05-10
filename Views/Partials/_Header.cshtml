@@ -6,11 +6,14 @@
             <a class="link" asp-controller="home" asp-action="Index">HOME</a>
             <a class="link" asp-controller="products" asp-action="Index">PRODUCTS</a>
             <a class="link" asp-controller="contacts" asp-action="Contact">CONTACT</a>
+            <a class="link" asp-controller="account" asp-action="Admin">ADMIN</a> 
+            
         </nav>
         <nav class="menu-icons">
             <a class="link" asp-controller="products" asp-action="search"><i class="fa-regular fa-search"></i></a>
             @if(signInManager.IsSignedIn(User))
-            {
+            {   
+                <a asp-action="Index" asp-controller="account">@User.Identity?.Name</a>
                 <a class="link" asp-controller="account" asp-action="SignOut">SignOut</a>
             }
             else
@@ -18,9 +21,7 @@
                 <a class="link" asp-controller="account" asp-action="register">SignUp</a>
                 <a class="link" asp-controller="account" asp-action="login">LogOn</a>
             }
-         
-            <a class="link" asp-controller="account" asp-action="index">Account</a>
-            <a class="link" asp-controller="shopping" asp-action="chart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a class="link" asp-controller="shopping" asp-action="Chart"><i class="fa-solid fa-cart-shopping"></i></a>
         </nav>
         <div class="toggle">
             <button class="btn-toggle btn-outline-white" data-option="toggle" data-target="#menu">

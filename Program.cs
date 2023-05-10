@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ShowcaseService>();
 builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<UserAuthService>();
-builder.Services.AddDefaultIdentity<IdentityUser>(x =>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 {
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;

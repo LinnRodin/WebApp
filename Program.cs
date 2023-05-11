@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ShowcaseService>();
 builder.Services.AddScoped<ContactService>();
+builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<UserAuthService>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 {
@@ -19,8 +20,9 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 }).AddEntityFrameworkStores<IdentityContext>();
 
 //Contexts
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("sql")));
 builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("IdentityDatabase")));
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("sql")));
+
 
 var app = builder.Build();
 app.UseHttpsRedirection();

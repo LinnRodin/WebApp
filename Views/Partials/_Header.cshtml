@@ -3,27 +3,27 @@
     <div class="container">
         <div class="logo"><img src="images/logo.svg" alt=""></div>
         <nav id="menu" class="menu-links">
-            <a class="link" asp-controller="home" asp-action="Index">HOME</a>
-            <a class="link" asp-controller="products" asp-action="Index">PRODUCTS</a>
-            <a class="link" asp-controller="contacts" asp-action="Contact">CONTACT</a>
-            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            <a class="link" asp-action="Index" asp-controller="Home">HOME</a>
+            <a class="link" asp-action="Index" asp-controller="Products">PRODUCTS</a>
+            <a class="link" asp-action="Contact" asp-controller="Contacts">CONTACT</a>
+            @if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
             {
-                <a class="link" asp-controller="account" asp-action="Admin">ADMIN</a>
+                <a class="link" asp-action="Index" asp-controller="Admin">ADMIN</a>
             }
         </nav>
         <nav class="menu-icons">
-            <a class="link" asp-controller="products" asp-action="search"><i class="fa-regular fa-search"></i></a>
+            <a class="link" asp-action="Search" asp-controller="Products"><i class="fa-regular fa-search"></i></a>
             @if(signInManager.IsSignedIn(User))
             {   
                 <a asp-action="Index" asp-controller="account">@User.Identity?.Name</a>
-                <a class="link" asp-controller="account" asp-action="SignOut">Sign Out</a>
+                <a class="link" asp-action="SignOut" asp-controller="Account">Sign Out</a>
             }
             else
             {
-                <a class="link" asp-controller="account" asp-action="register">Sign Up</a>
-                <a class="link" asp-controller="account" asp-action="login">Login</a>
+                <a class="link" asp-action="Register" asp-controller="Account">Sign Up</a>
+                <a class="link" asp-action="Login" asp-controller="Account">Login</a>
             }
-            <a class="link" asp-controller="shopping" asp-action="Chart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a class="link" asp-action="Chart" asp-controller="Shopping"><i class="fa-solid fa-cart-shopping"></i></a>
         </nav>
         <div class="toggle">
             <button class="btn-toggle btn-outline-white" data-option="toggle" data-target="#menu">

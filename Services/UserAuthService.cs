@@ -13,13 +13,17 @@ public class UserAuthService
 
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IdentityContext _identityContext;
+    private readonly SeedService _seedService;
 
-    public UserAuthService(UserManager<IdentityUser> userManager, IdentityContext identityContext, SignInManager<IdentityUser> signInManager)
+    public UserAuthService(UserManager<IdentityUser> userManager, IdentityContext identityContext, SignInManager<IdentityUser> signInManager, SeedService seedService, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _identityContext = identityContext;
         _signInManager = signInManager;
+        _seedService = seedService;
+        _roleManager = roleManager;
     }
 
 
@@ -27,10 +31,19 @@ public class UserAuthService
 
     public async Task<bool> SignUpAsync(RegisterViewModel registerViewmodel)
     {
-        try
-        {    //Skapa användare  
+        try   
+        {
+            await _seedService.SeedRoles();
+            
+            //Skapa användare/registrerar  
             IdentityUser identityUser = registerViewmodel;
             await _userManager.CreateAsync(identityUser, registerViewmodel.Password);
+
+            //Om det inte finns några användare, lägg till roll till admin rollen annars user rollen.
+            if (!await _userManager.Users.AnyAsync())
+            await _userManager.AddToRoleAsync(identityUser, "admin");
+            else
+                await _userManager.AddToRoleAsync(identityUser, "user"); 
 
             //Skapa profil för användarprofil
             UserProfileEntity userprofileEntity = registerViewmodel;
@@ -41,8 +54,6 @@ public class UserAuthService
             await _identityContext.SaveChangesAsync();
 
             return true;
-
-
 
         }
         catch { return false; }
@@ -81,66 +92,3 @@ public class UserAuthService
 
 
 
-
-
-
-
-/*public async Task<bool> CheckUserExists(Expression<Func<UserEntity, bool>> predicate )
-{
-    if (!await _userManager.Users.AnyAsync(predicate))
-       return true; 
-
-    return false;
-}
-
-
-public async Task<UserEntity> GetUserAsync(Expression<Func<UserEntity, bool>> predicate)
-{   
-    var UserEntity = await _userManager.Users.FirstOrDefaultAsync(predicate);
-        return UserEntity!;
-}
-
-
-
-public async Task<bool> RegisterAsync(RegisterViewModel registerViewModel)
-{
-    try
-    {
-
-
-        //Konverterar till userentity och profileentity från reg.formulär
-        UserEntity userEntity = registerViewModel;
-        UserProfileEntity profileEntity = registerViewModel;
-
-        //Skapar användare
-        _userManager.Users.Add(userEntity);
-        await _userManager.SaveChangesAsync();
-
-        //Skapar användarprofil
-        profileEntity.UserId = userEntity.Id;
-        _userManager.Profiles.Add(profileEntity);
-        await _userManager.SaveChangesAsync();
-
-        return true; 
-
-
-    }
-    catch
-    {
-        return false;
-
-    }
-
-}
-
-
-
-public async Task<bool> LoginAsync(LoginViewModel loginViewModel)
-{
-
-    var userEntity = await GetUserAsync(x => x.Email == loginViewModel.Email);
-    if (userEntity != null)
-        return userEntity.VerifySecurePassword(loginViewModel.Password);
-
-    return false;
-} */

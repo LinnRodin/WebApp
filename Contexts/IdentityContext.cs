@@ -1,28 +1,27 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using WebApp.Models.Entities;
+using WebApp.Services;
 
 namespace WebApp.Contexts
 {
     public class IdentityContext : IdentityDbContext
     {
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public IdentityContext(DbContextOptions options, RoleManager<IdentityRole> roleManager) : base(options)
+    
+        public IdentityContext(DbContextOptions options) : base(options)
         {
-            _roleManager = roleManager;
         }
-
 
         public DbSet<UserProfileEntity> UserProfiles { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
+    }
+}
 
-            using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
+//Bör funka 
+
+/*  using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
@@ -35,8 +34,4 @@ namespace WebApp.Contexts
                 {
                     roleManager.CreateAsync(new IdentityRole("user")).Wait();
                 }
-            }
-        }
-
-    }
-}
+            }  */

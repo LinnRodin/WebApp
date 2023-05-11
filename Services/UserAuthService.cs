@@ -34,6 +34,8 @@ public class UserAuthService
         try   
         {
             await _seedService.SeedRoles();
+
+
             
             //Skapa användare/registrerar  
             IdentityUser identityUser = registerViewmodel;

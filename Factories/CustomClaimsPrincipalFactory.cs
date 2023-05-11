@@ -21,6 +21,12 @@ namespace WebApp.Factories
             var userProfileEntity = await _userService.GetUserProfileAsync(user.Id);
 
             claimsIdentity.AddClaim(new Claim("DisplayName", $"{userProfileEntity.FirstName} {userProfileEntity.LastName}"));
+
+            var roles = await UserManager.GetRolesAsync(user);
+             foreach(var role in roles)
+             {
+                claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, role));
+             } 
             
             return claimsIdentity;
         }

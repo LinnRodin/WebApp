@@ -16,6 +16,7 @@
             @if(signInManager.IsSignedIn(User))
             {   
                 <a asp-action="Index" asp-controller="account">@User.Identity?.Name</a>
+                <a asp-action="Index" asp-controller="account">@User.FindFirst("DisplayName")?.Value</a>
                 <a class="link" asp-action="SignOut" asp-controller="Account">Sign Out</a>
             }
             else

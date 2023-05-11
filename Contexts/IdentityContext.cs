@@ -19,9 +19,12 @@ namespace WebApp.Contexts
     }
 }
 
-    //Borde också funka 
 
-/*  using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
+
+
+    //Borde också funka , testa i sommar. 
+
+    /*  using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 

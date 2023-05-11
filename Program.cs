@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Contexts;
+using WebApp.Factories;
 using WebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,13 +12,16 @@ builder.Services.AddScoped<ShowcaseService>();
 builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<UserAuthService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 {
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;
     x.User.RequireUniqueEmail = false;
 
-}).AddEntityFrameworkStores<IdentityContext>();
+})
+    .AddEntityFrameworkStores<IdentityContext>()
+    .AddClaimsPrincipalFactory<CustomClaimsPrincipalFactory>();
 
 //Contexts
 builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("IdentityDatabase")));

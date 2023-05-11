@@ -19,7 +19,7 @@ namespace WebApp.Contexts
     }
 }
 
-//Bör funka 
+    //Borde också funka 
 
 /*  using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
             {

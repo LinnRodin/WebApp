@@ -34,18 +34,16 @@ public class UserAuthService
         try   
         {
             await _seedService.SeedRoles();
-
-
-            
+            var roleName = "user";
+            //Om det inte finns några användare, lägg till roll till admin rollen annars user rollen.
+            if (!await _userManager.Users.AnyAsync())
+                roleName = "admin";
+           
             //Skapa användare/registrerar  
             IdentityUser identityUser = registerViewmodel;
             await _userManager.CreateAsync(identityUser, registerViewmodel.Password);
 
-            //Om det inte finns några användare, lägg till roll till admin rollen annars user rollen.
-            if (!await _userManager.Users.AnyAsync())
-            await _userManager.AddToRoleAsync(identityUser, "admin");
-            else
-                await _userManager.AddToRoleAsync(identityUser, "user"); 
+            await _userManager.AddToRoleAsync(identityUser, roleName);
 
             //Skapa profil för användarprofil
             UserProfileEntity userprofileEntity = registerViewmodel;

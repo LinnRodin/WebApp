@@ -28,3 +28,4 @@ public class ContactsViewModel
     [Display(Name = "Message")]
     public string? Message { get; set; }
 }
+

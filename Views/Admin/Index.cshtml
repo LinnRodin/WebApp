@@ -1,1 +1,25 @@
-﻿@{ ViewData["Title"] = "Admin - Dashboard"; }
+﻿@{
+    ViewData["Title"] = "Admin - Dashboard";
+}
+
+@model List<UserRoleViewModel>
+
+<h1>User Roles</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var userRole in Model)
+        {
+            <tr>
+                <td>@userRole.IdentityUser</td>
+                <td>@userRole.IdentityRole</td>
+            </tr>
+        }
+    </tbody>
+</table>

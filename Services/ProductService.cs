@@ -51,9 +51,9 @@ namespace WebApp.Services
         public async Task<GridCollectionItemViewModel> GetProductByIdAsync(int id)
         {
             var product = await _context.Products
-                .Include(p => p.Category)
+
                 .Where(p => p.Id == id)
-                .Cast<GridCollectionItemViewModel>()
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync();
 
             return product;

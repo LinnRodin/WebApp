@@ -1,88 +1,19 @@
-﻿
+﻿@model GridCollectionViewModel
+
 <section class="collection top-selling">
     <div class="container-fluid">
         <h1 class="collection-title">Top selling products this week!</h1>
         <div class="collection-grid">
 
-         
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/applewatchseries.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Apple watch collection</div>
-                        <div class="price">$33.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-           
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/Applewatch.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Apple watch collection</div>
-                        <div class="price">$35.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-            
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/applewatchseries.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Apple watch collection</div>
-                        <div class="price">$20.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-            
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/applewatch.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Apple watch collection</div>
-                        <div class="price">$50.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-           
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/Applewatch.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Apple watch collection</div>
-                        <div class="price">$40.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-            
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/applewatchseries.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Apple watch collection</div>
-                        <div class="price">$30.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-           
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/Applewatch.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Apple watch collection</div>
-                        <div class="price">$30.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-           
+            @if (Model.GridCards != null)
+            {
+                @foreach (var item in Model.GridCards)
+                {
+                    <partial name="/Views/Partials/_GridCollectionItem.cshtml" model="item" />
+                }
 
+            }
+           
         </div>
         <div class="load-more">
             <button class="btn-white"><i class="fa-solid fa-chevron-left"></i></button>

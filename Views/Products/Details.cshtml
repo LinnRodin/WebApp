@@ -99,14 +99,12 @@
         <div class="display-grid">
             @if (Model.RelatedDetailsList != null)
             {
-                <div class="collection-grid">
-                    @foreach (var item in Model.RelatedDetailsList)
-                    {
-                        <partial name="/Views/Partials/_GridCollectionItem.cshtml" model="item" />
-                    }
-                </div>
+                @foreach (var item in Model.RelatedDetailsList)
+                {
+                    <partial name="/Views/Partials/_GridCollectionItem.cshtml" model="item" />
+                }
+                
             }
-
         </div>
     </div>
 </section>

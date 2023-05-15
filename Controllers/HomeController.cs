@@ -42,7 +42,7 @@ public class HomeController : Controller
 
             TopProducts = new GridCollectionViewModel
             {
-                Title = "TopSellProducts",
+                Title = "TopProducts",
                 GridCards = await _productService.GetProductsAmountByCategoryAsync("Popular", 3)
             }
 

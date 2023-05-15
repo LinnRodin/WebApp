@@ -1,4 +1,6 @@
-﻿<!-- Section one placeholder for img start-->
+﻿@model ProductDetailsViewModel
+
+<!-- Section one placeholder for img start-->
 <section class="sectionone">
     <div class="container">
         <div class="sectionone-content">
@@ -21,7 +23,7 @@
             </div>
         </div>
         <div class="product-details">
-            <p class="product-title"> Young Star Shoe Fashion </p>
+            <p class="product-title">@Model.Name</p>
             <p class="product-description"> Product Description : Great shoes for great value. </p>
             <div class="product-rating">
                 <span class="fa-solid fa-star"></span>
@@ -30,7 +32,7 @@
                 <span class="fa-solid fa-star"></span>
                 <span class="fa-solid fa-star"></span>
             </div>
-            <p class="product-price">$19.99</p>
+            <p class="product-price">@Model.Price</p>
             <div class="product-quantity">
                 <button>-</button>
                 <span>1</span>
@@ -45,7 +47,7 @@
                     <p> SKU N/A</p>
                 </div>
                 <button class="wish">Add to wishlist</button>
-                <div class="small-description"> Category: Table Lamp</div>
+                <div class="small-description"> Category: @Model.Category.Name</div>
             </div>
         </div>
     </div>

@@ -1,38 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using WebApp.ViewModels;
-using WebApp.Models;
+using System.Threading.Tasks;
 using WebApp.Contexts;
+using WebApp.Models.Entities;
+using WebApp.Services;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly DataContext _context;
+        private readonly ProductService _productService;
 
-        public ProductsController(DataContext context)
+        public ProductsController(ProductService productService)
         {
-            _context = context;
+            _productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var allProducts = _context.Products.ToList();
-
+           
             var viewModel = new ProductsIndexViewModel
             {
                 AllProducts = new GridCollectionViewModel
                 {
                     Title = "All Products",
-                    GridCards = allProducts.Select(p => new ProductViewModel
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Price = p.Price,
-                        ImageUrl = p.ImageUrl,
-                        Description = p.Description
-                    }).Cast<GridCollectionItemViewModel>()
-                        .ToList()
+                    GridCards = await _productService.GetAllProductsAsync()
                 }
             };
 
@@ -40,9 +33,10 @@ namespace WebApp.Controllers
         }
 
 
-        public IActionResult Details(int id)
+
+        public async Task<IActionResult> Details(int id)
         {
-            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            var product = await _productService.GetProductByIdAsync(id);
 
             if (product == null)
             {
@@ -51,16 +45,17 @@ namespace WebApp.Controllers
 
             var viewModel = new ProductDetailsViewModel
             {
-                Id = product.Id,
-                Name = product.Name,
+                Id = Convert.ToInt32(product.Id),
+                Name = product.Title,
                 Price = product.Price,
                 ImageUrl = product.ImageUrl,
-                Description = product.Description
+                Description = product.Description,
+                CategoryId = product.Category?.Id
+                
             };
 
             return View(viewModel);
         }
-
 
     }
 }

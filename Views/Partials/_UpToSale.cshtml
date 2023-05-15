@@ -1,18 +1,20 @@
-﻿<section class="up-to-sale">
+﻿@model GridCollectionViewModel
+
+<section class="up-to-sale">
     <div class="container">
         <div class="collection-grid">
             
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/ladiestwo.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Table Lamp - Light </div>
-                        <div class="price">$25.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
+
+            @if (Model.GridCards != null)
+            {
+                <div class="collection-grid">
+                    @foreach (var item in Model.GridCards)
+                    {
+                        <partial name="/Views/Partials/_GridCollectionItem.cshtml" model="item" />   
+                    }
                 </div>
-            </a>
-            
+            }    
+   
             <div  class="collection-item collection-content">
                 <div class="container">
                     <div class="title-red">UP TO SALE</div>
@@ -22,18 +24,6 @@
                     <a asp-controller="products" asp-action="details" class="link">Discover More</a>
                 </div>
             </div>
-           
-            <a asp-controller="products" asp-action="details" class="collection-item">
-                <img src="images/placeholders/girls.png" alt="">
-                <div class="body">
-                    <div class="info">
-                        <div class="title">Table Lamp - Dark</div>
-                        <div class="price">$25.00</div>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-            
         </div>
     </div>
 </section>

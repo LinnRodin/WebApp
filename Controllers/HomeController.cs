@@ -1,100 +1,60 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Contexts;
+using WebApp.Services;
 using WebApp.ViewModels;
 
 
 
 public class HomeController : Controller
 {
+    private readonly ProductService _productService;
     private readonly DataContext _context;
 
-    public HomeController(DataContext context)
+    public HomeController(DataContext context, ProductService productService)
     {
         _context = context;
+        _productService = productService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-            var BestCollection = _context.Products
-            .Where(p => p.Category.Name == "Featured")
-            .Select(p => new ProductViewModel
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                ImageUrl = p.ImageUrl,
-                Description = p.Description
-                
-            }).Take(8)
-            .ToList();
-
-            var UpToSale = _context.Products
-            .Where(p => p.Category.Name == "New")
-            .Select(p => new ProductViewModel
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                ImageUrl = p.ImageUrl,
-                Description = p.Description
-                
-            }).Take(3)
-            .ToList();
-
-            var TopSellProducts = _context.Products
-            .Where(p => p.Category.Name == "Popular")
-            .Select(p => new ProductViewModel
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                ImageUrl = p.ImageUrl,
-                Description = p.Description
-                
-            }).Take(7)
-            .ToList();
-      
-
-             var TopProducts = _context.Products
-            .Where(p => p.Category.Name == "New")
-            .Select(p => new ProductViewModel
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Price = p.Price,
-                ImageUrl = p.ImageUrl,
-                Description = p.Description
-                
-            }).Take(3)
-            .ToList();
-
-
-
-        var NewProductsList = TopProducts.Concat(TopSellProducts).ToList();
 
         var viewModel = new HomeIndexViewModel
         {
-            NewProducts = new GridCollectionViewModel
-            {
-                Title = "New Products",
-                GridCards = NewProductsList.Cast<GridCollectionItemViewModel>().ToList()
-            },
-            PopularProducts = new GridCollectionViewModel
-            {
-                Title = "Popular Products",
-                GridCards = UpToSale.Cast<GridCollectionItemViewModel>().ToList()
-            },
-            FeaturedProducts = new GridCollectionViewModel
+            BestCollection = new GridCollectionViewModel
             {
                 Title = "Best Collection",
                 Categories = new List<string> { "All", "Bags", "Dresses", "Decorations", "Essentials", "Interior", "Laptops", "Mobile", "MakeUp" },
-                GridCards = BestCollection.Cast<GridCollectionItemViewModel>().ToList()
+                GridCards = await _productService.GetProductsAmountByCategoryAsync("Featured", 8)
+            },
+
+            UpToSale = new GridCollectionViewModel
+            {
+                Title = "UpToSale",
+                GridCards = await _productService.GetProductsAmountByCategoryAsync("New", 3)
+            },
+
+            TopSellProducts = new GridCollectionViewModel
+            {
+                Title = "TopSellProducts",
+                GridCards = await _productService.GetProductsAmountByCategoryAsync("Popular", 7)
+            },
+
+            TopProducts = new GridCollectionViewModel
+            {
+                Title = "TopSellProducts",
+                GridCards = await _productService.GetProductsAmountByCategoryAsync("Popular", 3)
             }
+
         };
 
-
         return View(viewModel);
+
     }
+
+
+       
+    
 }
 
 

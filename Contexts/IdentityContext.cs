@@ -6,10 +6,10 @@ using WebApp.Services;
 
 namespace WebApp.Contexts
 {
-    public class IdentityContext : IdentityDbContext
+    public class IdentityContext : IdentityDbContext<IdentityUser>
     {
     
-        public IdentityContext(DbContextOptions options) : base(options)
+        public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
         {
         }
 
@@ -22,19 +22,29 @@ namespace WebApp.Contexts
 
 
 
-    //Borde också funka , testa i sommar. 
+//Borde också funka , testa i sommar. 
 
-    /*  using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
+/*  using (var serviceScope = this.GetService<IServiceScopeFactory>().CreateScope())
+        {
+            var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            if (!roleManager.RoleExistsAsync("admin").Result)
             {
-                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                roleManager.CreateAsync(new IdentityRole("admin")).Wait();
+            }
 
-                if (!roleManager.RoleExistsAsync("admin").Result)
-                {
-                    roleManager.CreateAsync(new IdentityRole("admin")).Wait();
-                }
+            if (!roleManager.RoleExistsAsync("user").Result)
+            {
+                roleManager.CreateAsync(new IdentityRole("user")).Wait();
+            }
+            /protected override void OnModelCreating(ModelBuilder builder)
+            //{
+            //    builder.Entity<IdentityRole>()
+            //        .HasData(
+            //            new IdentityRole { Name = "admin", NormalizedName = "ADMIN" },
+            //            new IdentityRole { Name = "user", NormalizedName = "USER" });
 
-                if (!roleManager.RoleExistsAsync("user").Result)
-                {
-                    roleManager.CreateAsync(new IdentityRole("user")).Wait();
-                }
-            }  */
+ 
+            //    base.OnModelCreating(builder);
+            //}
+                    }  */

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Services;
 using WebApp.ViewModels;
@@ -9,14 +10,18 @@ public class AccountController : Controller
 {
 
     private readonly UserAuthService _auth;
+    private readonly UserManager<IdentityUser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
 
-    public AccountController(UserAuthService auth)
+    public AccountController(UserAuthService auth, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _auth = auth;
+        _userManager = userManager;
+        _roleManager = roleManager;
     }
 
 
-    [Authorize]
+
     public IActionResult Register()
     {
         return View();
@@ -55,9 +60,22 @@ public class AccountController : Controller
         if (ModelState.IsValid)
         {
             if (await _auth.SignInAsync(loginViewModel))
-             return RedirectToAction("Index");
-
-
+            {
+                var user = await _userManager.FindByNameAsync(loginViewModel.Email);
+                if(user is not null) 
+                {
+                    var role = await _userManager.GetRolesAsync(user);
+                    if(role is not null)
+                    {
+                        if (role.Contains("admin"))
+                            return RedirectToAction("Index", "admin");
+                        else return RedirectToAction("Index", "Account");
+                    }
+                    
+                }
+               
+            }
+         
            ModelState.AddModelError("", "Incorrect email or password");
 
         }
@@ -78,8 +96,8 @@ public class AccountController : Controller
     }
 
 
+    [Authorize]    
     
-
     public IActionResult Index()
     {
         return View();

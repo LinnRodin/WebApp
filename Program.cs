@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ShowcaseService>();
 builder.Services.AddScoped<ContactService>();
+builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<UserAuthService>();
 builder.Services.AddScoped<UserService>();

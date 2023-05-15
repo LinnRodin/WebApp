@@ -27,30 +27,30 @@
             <form asp-action="Contact" method="post" novalidate>
                 <div class="name form-group">
                     <label asp-for="Name">Your Name*</label>
-                    <input id="name" type="text" asp-for="Name">
+                    <input id="name" type="text" asp-for="Name" onkeyup="validateName()">
                     <small><span asp-validation-for="Name" class="text-danger"></span></small>
                 </div>
                 <div class="email form-group">
                     <label asp-for="Email">Your Email*</label>
-                    <input id="email" type="email" asp-for="Email">
+                    <input id="email" type="email" asp-for="Email" onkeyup="validateEmail()">
                     <small><span asp-validation-for="Email" class="text-danger"></span></small>
                 </div>
                 <div class="phoneNumber form-group">
                     <label asp-for="PhoneNumber">Phone (optional)</label>
-                    <input id="phone" type="text" asp-for="PhoneNumber">
+                    <input id="phone" type="text" asp-for="PhoneNumber" onkeyup="validatePhoneNumber()">
                 </div>
                 <div class="companyName form-group">
                     <label asp-for="CompanyName">Company(optional)</label>
-                    <input id="company" type="text" asp-for="CompanyName">
+                    <input id="company" type="text" asp-for="CompanyName" onkeyup="validateCompanyName()">
                 </div>
                 <div class="message form-group">
                     <label asp-for="Message">Message</label>
-                    <textarea id="message" asp-for="Message"></textarea>
+                    <textarea id="message" asp-for="Message" onkeyup="validateMessage()"></textarea>
                 </div>
                 <div class="terms form-checkbox-group">
                     <label asp-for="AcceptedData" class="custom-checkbox">
                         Save my name and email in this browser for the next time I comment.
-                        <input type="checkbox" checked="checked" asp-for="AcceptedData">
+                        <input type="checkbox" checked="checked" asp-for="AcceptedData" onkeyup="validateAcceptedData()">
                         <span asp-validation-for="AcceptedData" class="text-danger checkmark"></span>
                     </label>
                 </div>

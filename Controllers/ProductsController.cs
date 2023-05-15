@@ -51,7 +51,7 @@ namespace WebApp.Controllers
                 ImageUrl = product.ImageUrl,
                 Description = product.Description,
                 CategoryId = product.Category?.Id,
-                RelatedDetailsList = await _productService.GetProductsAmountDetailsAsync(4) // Hämtar 4 ifrån listan i ProductDetailsViewModel. 
+                RelatedDetailsList = await _productService.GetProductsAmountDetailsAsync(4) // Get 4 products from list in ProductDetailsViewModel. 
                 
             };
 

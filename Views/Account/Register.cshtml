@@ -18,12 +18,12 @@
 
             <div class="name form-group">
                 <label asp-for="FirstName"></label>
-                <input id="firstname" type="text" asp-for="FirstName" />
+                <input id="firstname" type="text" asp-for="FirstName" onkeyup="validateField(this, 'firstNameError', validateName)" />
                 <small><span asp-validation-for="FirstName" class="text-danger"></span></small>
             </div>
             <div class="lastname form-group">
                 <label asp-for="LastName"></label>
-                <input id="lastname" type="text" asp-for="LastName" />
+                <input id="lastname" type="text" asp-for="LastName" onkeyup="validateField(this, 'lastNameError', validateName)" />
                 <small><span asp-validation-for="LastName" class="text-danger"></span></small>
             </div>
             <div class="streetname form-group">
@@ -48,22 +48,22 @@
             </div>
             <div class="email form-group">
                 <label asp-for="Email"></label>
-                <input id="email" type="email" asp-for="Email" />
+                <input id="email" type="email" asp-for="Email" onkeyup="validateField(this, 'emailError', validateEmail)" />
                 <small><span asp-validation-for="Email" class="text-danger"></span></small>
             </div>
             <div class="password form-group">
                 <label asp-for="Password"></label>
-                <input id="password" type="password" asp-for="Password" />
+                <input id="password" type="password" asp-for="Password" onkeyup="validateField(this, 'passwordError', validatePassword)" />
                 <small><span asp-validation-for="Password" class="text-danger"></span></small>
             </div>
             <div class="confirm-password form-group">
                 <label asp-for="ConfirmPassword"></label>
-                <input id="confirm-password" type="password" asp-for="ConfirmPassword" />
+                <input id="confirm-password" type="password" asp-for="ConfirmPassword" onkeyup="validateField(this, 'confirmPasswordError', validateConfirmPassword)" />
                 <small><span asp-validation-for="ConfirmPassword" class="text-danger"></span></small>
             </div>
             <div class="upload image form-group">
                 <label asp-for="Image"></label>
-                <input id="upload-image" type="file" asp-for="Image" />
+                <input id="upload-image" type="file" asp-for="Image" onchange="validateField(this, 'uploadImageError', validateImage)" />
             </div>
             <div class="message form-group">
                 <label asp-for="Message"></label>
@@ -72,7 +72,7 @@
             <div class="terms form-checkbox-group">
                 <label asp-for="AcceptedTerms" class="account-checkbox">
                     I have read and accept the terms and agreements.
-                    <input type="checkbox" checked="checked" asp-for="AcceptedTerms">
+                    <input type="checkbox" checked="checked" asp-for="AcceptedTerms" onclick="validateField(this, 'acceptedTermsError', validateAcceptedTerms)">
                     <span asp-validation-for="AcceptedTerms" class="text-danger checkmark" ></span>
                 </label>
             </div>

@@ -38,6 +38,16 @@ namespace WebApp.Services
                     return Products;
         }
 
+        public async Task<List<GridCollectionItemViewModel>> GetProductsAmountDetailsAsync( int numberOfProducts)
+        {
+            var Products = await _context.Products
+           .Cast<GridCollectionItemViewModel>()
+           .Take(numberOfProducts)
+           .ToListAsync();
+
+            return Products;
+        }
+
         public async Task<GridCollectionItemViewModel> GetProductByIdAsync(int id)
         {
             var product = await _context.Products

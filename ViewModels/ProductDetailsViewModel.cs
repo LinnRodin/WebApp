@@ -9,9 +9,9 @@
         public string? Description { get; set; }
 
         public int? CategoryId { get; set; }
-        public CategoryViewModel? Category { get; set; } 
+        public CategoryViewModel? Category { get; set; }
 
-        //Lista 
+        public List<GridCollectionItemViewModel> RelatedDetailsList { get; set; } = new List<GridCollectionItemViewModel>();
 
     }
 }

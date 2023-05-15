@@ -50,7 +50,8 @@ namespace WebApp.Controllers
                 Price = product.Price,
                 ImageUrl = product.ImageUrl,
                 Description = product.Description,
-                CategoryId = product.Category?.Id
+                CategoryId = product.Category?.Id,
+                RelatedDetailsList = await _productService.GetProductsAmountDetailsAsync(4) // Hämtar 4 ifrån listan i modell. 
                 
             };
 

@@ -97,52 +97,16 @@
     <div class="container">
         <h1 class="display-title">Related Products</h1>
         <div class="display-grid">
-            <!-- item start -->
-            <a href="#" class="collection-item">
-                <img src="images/placeholders/Tablelamp.png" alt="">
-                <div class="body">
-                    <div class="infobox">
-                        <div class="title">Lamps</div>
-                        <p class="infoprice">$45</p>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
+            @if (Model.RelatedDetailsList != null)
+            {
+                <div class="collection-grid">
+                    @foreach (var item in Model.RelatedDetailsList)
+                    {
+                        <partial name="/Views/Partials/_GridCollectionItem.cshtml" model="item" />
+                    }
                 </div>
-            </a>
-            <!-- item end -->
-            <!-- item start -->
-            <a href="#" class="collection-item">
-                <img src="images/placeholders/Gumshoes.png" alt="">
-                <div class="body">
-                    <div class="infobox">
-                        <div class="title">Rainboots</div>
-                        <p class="infoprice">$50</p>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-            <!--item end -->
-            <!--item start -->
-            <a href="#" class="collection-item">
-                <img src="images/placeholders/kettlewaterboiler.png" alt="">
-                <div class="body">
-                    <div class="infobox">
-                        <div class="title">Water Boiler</div>
-                        <P class="infoprice">$30</P>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
-            <!--item start -->
-            <a href="#" class="collection-item">
-                <img src="images/placeholders/Ricecooker.png" alt="">
-                <div class="body">
-                    <div class="infobox">
-                        <div class="title">Rice Cooker</div>
-                        <P class="infoprice">$30</P>
-                    </div>
-                    <i class="tocart fa-solid fa-cart-plus"></i>
-                </div>
-            </a>
+            }
+
         </div>
     </div>
 </section>

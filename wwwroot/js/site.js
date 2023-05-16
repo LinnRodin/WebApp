@@ -21,7 +21,6 @@
 
 //JS Validation registrationform
 
-
 var formRegistration = document.getElementById('registrationForm');
 
 var fields = [
@@ -30,7 +29,7 @@ var fields = [
     { id: 'email', errorId: 'emailError', validationFn: validateEmail },
     { id: 'password', errorId: 'passwordError', validationFn: validatePassword },
     { id: 'confirm-password', errorId: 'confirmPasswordError', validationFn: validateConfirmPassword },
-    { id: 'AcceptedTerms', errorId: 'acceptedTermsError', validationFn: validateAcceptedTerms },
+    { id: 'acceptedterms', errorId: 'acceptedTermsError', validationFn: validateAcceptedTerms },
     { id: 'upload-image', errorId: 'uploadImageError', validationFn: validateImage }
 ];
 
@@ -98,7 +97,7 @@ fields.forEach(function (field) {
     });
 });
 
-function validateImage() {
+function validateImage(value) {
     var allowedExtensions = ['.jpg', '.jpeg', '.png'];
     var fileInput = document.getElementById('upload-image');
     var file = fileInput.files[0];
@@ -128,9 +127,6 @@ formRegistration.addEventListener('submit', function (event) {
     if (hasErrors) {
         event.preventDefault(); // Prevents the form from submitting if there are errors
     }
-});
-
-
 
 
 

@@ -27,7 +27,7 @@ namespace WebApp.Controllers
             {
                 _contactService.AddContact(contactsViewModel);
 
-                return RedirectToAction("ThankYou");
+                return RedirectToAction("Thank You");
             }
 
             return View(contactsViewModel);

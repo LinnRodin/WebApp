@@ -65,10 +65,7 @@
                 <label asp-for="Image"></label>
                 <input id="upload-image" type="file" asp-for="Image" onchange="validateField(this, 'uploadImageError', validateImage)" />
             </div>
-            <div class="message form-group">
-                <label asp-for="Message"></label>
-                <textarea id="message" asp-for="Message"></textarea>
-            </div>
+            
             <div class="terms form-checkbox-group">
                 <label asp-for="AcceptedTerms" class="account-checkbox">
                     I have read and accept the terms and agreements.

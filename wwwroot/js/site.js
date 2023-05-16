@@ -21,11 +21,12 @@
 
 //JS Validation registrationform
 
-const form = document.querySelector('form');
 
-const fields = [
-    { id: 'firstname', errorId: 'firstNameError', validationFn: validateName },
-    { id: 'lastname', errorId: 'lastNameError', validationFn: validateName },
+var formRegistration = document.getElementById('registrationForm');
+
+var fields = [
+    { id: 'firstname', errorId: 'firstNameError', validationFn: validateRegisterName },
+    { id: 'lastname', errorId: 'lastNameError', validationFn: validateRegisterName },
     { id: 'email', errorId: 'emailError', validationFn: validateEmail },
     { id: 'password', errorId: 'passwordError', validationFn: validatePassword },
     { id: 'confirm-password', errorId: 'confirmPasswordError', validationFn: validateConfirmPassword },
@@ -33,11 +34,15 @@ const fields = [
     { id: 'upload-image', errorId: 'uploadImageError', validationFn: validateImage }
 ];
 
-function validateName(value) {
-    if (!value.trim()) {
-        return 'Field is required';
+function validateRegisterName(value) {
+    var regex = /^[A-Za-z]+$/;
+    if (value === '') {
+        return 'Firstname is required.';
+    } else if (!regex.test(value)) {
+        return 'Invalid name format. Only alphabetic characters are allowed.';
+    } else {
+        return '';
     }
-    return '';
 }
 
 function validateEmail(value) {
@@ -75,18 +80,18 @@ function validateAcceptedTerms(value) {
 }
 
 function validateField(field) {
-    const input = document.querySelector(`#${field.id}`);
-    const error = document.querySelector(`#${field.errorId}`);
-    const value = input.value.trim();
-    const validationFn = field.validationFn;
+    var input = document.getElementById(field.id);
+    var error = document.getElementById(field.errorId);
+    var value = input.value.trim();
+    var validationFn = field.validationFn;
 
-    const errorMessage = validationFn(value, password.value);
+    var errorMessage = validationFn(value, document.getElementById('password').value);
     error.textContent = errorMessage;
 }
 
-fields.forEach((field) => {
-    const input = document.querySelector(`#${field.id}`);
-    const validationFn = field.validationFn;
+fields.forEach(function (field) {
+    var input = document.getElementById(field.id);
+    var validationFn = field.validationFn;
 
     input.addEventListener('keyup', function () {
         validateField(field);
@@ -94,13 +99,13 @@ fields.forEach((field) => {
 });
 
 function validateImage() {
-    const allowedExtensions = ['.jpg', '.jpeg', '.png'];
-    const fileInput = document.querySelector('#upload-image');
-    const file = fileInput.files[0];
+    var allowedExtensions = ['.jpg', '.jpeg', '.png'];
+    var fileInput = document.getElementById('upload-image');
+    var file = fileInput.files[0];
 
     if (file) {
-        const fileName = file.name.toLowerCase();
-        const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+        var fileName = file.name.toLowerCase();
+        var fileExtension = fileName.substring(fileName.lastIndexOf('.'));
         if (!allowedExtensions.includes(fileExtension)) {
             return 'Invalid image format. Allowed formats: JPG, JPEG, PNG';
         }
@@ -109,21 +114,23 @@ function validateImage() {
     return '';
 }
 
-form.addEventListener('submit', function (event) {
-    let hasErrors = false;
+formRegistration.addEventListener('submit', function (event) {
+    var hasErrors = false;
 
-    fields.forEach((field) => {
+    fields.forEach(function (field) {
         validateField(field);
-        const error = document.querySelector(`#${field.errorId}`);
+        var error = document.getElementById(field.errorId);
         if (error.textContent) {
             hasErrors = true;
         }
     });
 
     if (hasErrors) {
-        event.preventDefault();
+        event.preventDefault(); // Prevents the form from submitting if there are errors
     }
 });
+
+
 
 
 

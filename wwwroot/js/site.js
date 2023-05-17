@@ -84,13 +84,28 @@ function validateEmail(selector, listener) {
     catch { }
 }
 
-
+// Function to validate a password input element
+function validatePassword(selector, listener, minLength = 8) {
+    try {
+        const element = document.querySelector(selector);
+        element.addEventListener(listener, () => {
+            if (element.value.length == 0) {
+                setError(element, `You need to enter a ${element.name}`);
+            } else if (!/(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}/.test(element.value)) {
+                setError(element, `${element.name} must contain at least one uppercase letter, one lowercase letter, one digit, and be at least ${minLength} characters long`);
+            } else {
+                setSuccess(element);
+            }
+        });
+    } catch { }
+}
 
 
 validateText('#firstname', 'keyup', 3)
 validateText('#lastname', 'keyup', 3)
 validateEmail('#email', 'keyup')
 validateText('#name', 'keyup')
+validatePassword('#password', 'keyup');
 
 
 
@@ -123,6 +138,7 @@ function handleSubmit(selector) {
 
 handleSubmit('#formRegistration')
 handleSubmit('#formContact')
+handleSubmit('#formLogin')
 
 
 
@@ -284,7 +300,7 @@ handleSubmit('#formContact')
 //};
 
 
-//var validateContactName = () => {                           //First retrieves the value of the nameInput element (input field) and trims trailing whitespace from the value. The result is assigned to the nameValue variable. Then if (!nameValue) checks if its false so if its an empty string(name missing or not) or empty space. 
+//var validateContactName = () => {                   //First retrieves the value of the nameInput element (input field) and trims trailing whitespace from the value. The result is assigned to the nameValue variable. Then if (!nameValue) checks if its false so if its an empty string(name missing or not) or empty space. 
 //    var nameValue = nameInput.value.trim();           //Then we check the conditions like name is required(nameError), hasErrors = true that means if any validation errors has occured, it is set to true to indicate that an error has occured. else if (!/^[a-zA-ZÅÄÖåäö\s'-]+$/.test(nameValue)) { - If the previous condition is not met, this condition checks if nameValue does not match the specified regular expression. 
 //    if (!nameValue) {                                //nameError.textContent = 'Invalid format. Only letters, ÅÄÖ, hyphen, apostrophe, and spaces allowed.'; - If nameValue does not match the pattern. Then hasErrors again to indicate if errors has been detected. 
 //            nameError.textContent = 'Name is required';

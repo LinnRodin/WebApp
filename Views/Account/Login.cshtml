@@ -16,18 +16,18 @@
 
             <div class="email form-group">
                 <label asp-for="Email">E-mail*</label>
-                <input asp-for="Email" id="email" type="text" class="invalid" onkeyup="validateLoginForm()">
+                <input asp-for="Email" id="email" type="text" class="invalid" >
                 <span id="email-error" asp-validation-for="Email" class="error">Your email is required</span>
             </div>
             <div class="password form-group">
                 <label asp-for="Password">Password*</label>
-                <input asp-for="Password" id="password" type="password" onkeyup="validateLoginForm()">
+                <input asp-for="Password" id="password" type="password" >
                 <span id="password-error" asp-validation-for="Password" class="error">Password is required</span>
             </div>
             <div class="terms form-checkbox-group">
                 <label asp-for="RememberLogin" class="login-checkbox">
-                    Please keep me logged in.
-                    <input asp-for="RememberLogin" id="RememberLogin" type="checkbox" checked="checked" onkeyup="validateLoginForm()">
+                        Please keep me logged in.
+                    <input asp-for="RememberLogin" id="RememberLogin" type="checkbox" checked="checked" >
                     <span asp-validation-for="RememberLogin" class="checkmark"></span>
                 </label>
             </div>

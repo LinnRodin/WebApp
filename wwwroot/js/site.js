@@ -21,10 +21,10 @@
 
 //JS Validation registrationform
 
-var formRegistration = document.getElementById('registrationForm');
+var formRegistration = document.getElementById('formRegistration'); //Retrieves the form element with the ID "formRegistration"
 
 var fields = [
-    { id: 'firstname', errorId: 'firstNameError', validationFn: validateRegisterName },
+    { id: 'firstname', errorId: 'firstNameError', validationFn: validateRegisterName },   //Fields containing objects to be validated id, errorid and validationFn that calls the function for the field. 
     { id: 'lastname', errorId: 'lastNameError', validationFn: validateRegisterName },
     { id: 'email', errorId: 'emailError', validationFn: validateEmail },
     { id: 'password', errorId: 'passwordError', validationFn: validatePassword },
@@ -33,7 +33,9 @@ var fields = [
     { id: 'upload-image', errorId: 'uploadImageError', validationFn: validateImage }
 ];
 
-function validateRegisterName(value) {
+
+
+function validateRegisterName(value) {   //Validation for the "firstname" and "lastname" fields
     var regex = /^[A-Za-z]+$/;
     if (value === '') {
         return 'Firstname is required.';
@@ -44,7 +46,7 @@ function validateRegisterName(value) {
     }
 }
 
-function validateEmail(value) {
+function validateEmail(value) {  // Validation for email field.
     if (!value.trim()) {
         return 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(value)) {
@@ -53,7 +55,7 @@ function validateEmail(value) {
     return '';
 }
 
-function validatePassword(value) {
+function validatePassword(value) {   //Validation for the Password field. 
     if (!value.trim()) {
         return 'Password is required';
     } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(value)) {
@@ -62,7 +64,7 @@ function validatePassword(value) {
     return '';
 }
 
-function validateConfirmPassword(value, passwordValue) {
+function validateConfirmPassword(value, passwordValue) {   //Validation for the ConfirmPassword field. 
     if (!value.trim()) {
         return 'You must confirm the password';
     } else if (value !== passwordValue) {
@@ -73,12 +75,12 @@ function validateConfirmPassword(value, passwordValue) {
 
 function validateAcceptedTerms(value) {
     if (!value) {
-        return 'You must accept the terms and agreements to proceed.';
+        return 'You must accept the terms and agreements to proceed.';  // Validation for the "acceptedterms" field. (true or false)
     }
     return '';
 }
 
-function validateField(field) {
+function validateField(field) {         //takes a field object as input and performs validation for that field. It retrieves the input element, error message element, and value from the field object, calls the associated validation function, and sets the error message.
     var input = document.getElementById(field.id);
     var error = document.getElementById(field.errorId);
     var value = input.value.trim();
@@ -88,7 +90,7 @@ function validateField(field) {
     error.textContent = errorMessage;
 }
 
-fields.forEach(function (field) {
+fields.forEach(function (field) {       // Loop through each field and attach a keyup event listener, to trigger the validateField function when the user types.                                                
     var input = document.getElementById(field.id);
     var validationFn = field.validationFn;
 
@@ -97,12 +99,12 @@ fields.forEach(function (field) {
     });
 });
 
-function validateImage(value) {
+function validateImage() {              //Validates the condition for image types approved. 
     var allowedExtensions = ['.jpg', '.jpeg', '.png'];
     var fileInput = document.getElementById('upload-image');
-    var file = fileInput.files[0];
 
-    if (file) {
+    if (fileInput.files.length > 0) {
+        var file = fileInput.files[0];
         var fileName = file.name.toLowerCase();
         var fileExtension = fileName.substring(fileName.lastIndexOf('.'));
         if (!allowedExtensions.includes(fileExtension)) {
@@ -113,11 +115,12 @@ function validateImage(value) {
     return '';
 }
 
+
 formRegistration.addEventListener('submit', function (event) {
     var hasErrors = false;
 
     fields.forEach(function (field) {
-        validateField(field);
+        validateField(field); // Call the validateField function for each field.
         var error = document.getElementById(field.errorId);
         if (error.textContent) {
             hasErrors = true;
@@ -125,34 +128,37 @@ formRegistration.addEventListener('submit', function (event) {
     });
 
     if (hasErrors) {
-        event.preventDefault(); // Prevents the form from submitting if there are errors
+        event.preventDefault(); // Prevents the form from submitting if there are errors.
     }
+});
 
 
 
 
 // JS Validation Contactform
 
-const form = document.querySelector('form');
+var formContact = document.getElementById('formContact');
 
-const nameInput = document.querySelector('#name');
-const emailInput = document.querySelector('#email');
-const phoneNumberInput = document.querySelector('#phone');
-const companyNameInput = document.querySelector('#company');
-const messageInput = document.querySelector('#message');
-const acceptedDataInput = document.querySelector('#AcceptedData');
+var nameInput = document.querySelector('#name');
+var emailInput = document.querySelector('#email');
+var phoneNumberInput = document.querySelector('#phone');
+var companyNameInput = document.querySelector('#company');
+var messageInput = document.querySelector('#message');
+var acceptedDataInput = document.querySelector('#AcceptedData');
 
-const nameError = document.querySelector('span[data-valmsg-for="Name"]');
-const emailError = document.querySelector('span[data-valmsg-for="Email"]');
-const phoneNumberError = document.querySelector('span[data-valmsg-for="PhoneNumber"]');
-const companyNameError = document.querySelector('span[data-valmsg-for="CompanyName"]');
-const messageError = document.querySelector('span[data-valmsg-for="Message"]');
-const acceptedDataError = document.querySelector('span[data-valmsg-for="AcceptedData"]');
+var nameError = document.querySelector('span[data-valmsg-for="Name"]');
+var emailError = document.querySelector('span[data-valmsg-for="Email"]');
+var phoneNumberError = document.querySelector('span[data-valmsg-for="PhoneNumber"]');
+var companyNameError = document.querySelector('span[data-valmsg-for="CompanyName"]');
+var messageError = document.querySelector('span[data-valmsg-for="Message"]');
+var acceptedDataError = document.querySelector('span[data-valmsg-for="AcceptedData"]');
+
+
 
 let hasErrors = false;
 
 // Reset error messages
-const resetErrorMessages = () => {
+var resetErrorMessages = () => {
     nameError.textContent = '';
     emailError.textContent = '';
     phoneNumberError.textContent = '';
@@ -161,114 +167,147 @@ const resetErrorMessages = () => {
     acceptedDataError.textContent = '';
 };
 
-const validateName = () => {
-    const nameValue = nameInput.value.trim();
-    if (!nameValue) {
-        nameError.textContent = 'Name is required';
-        hasErrors = true;
-    } else if (!/^[a-zA-ZÅÄÖåäö\s'-]+$/.test(nameValue)) {
-        nameError.textContent = 'Invalid format. Only letters, ÅÄÖ, hyphen, apostrophe, and spaces allowed.';
-        hasErrors = true;
-    }
-};
 
-const validateEmail = () => {
-    const emailValue = emailInput.value.trim();
-    if (!emailValue) {
-        emailError.textContent = 'Email is required';
-        hasErrors = true;
-    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailValue)) {
-        emailError.textContent = 'Invalid email format';
-        hasErrors = true;
-    }
-};
+    var validateName = () => {
+        var nameValue = nameInput.value.trim();
+        if (!nameValue) {
+            nameError.textContent = 'Name is required';
+            hasErrors = true;
+        } else if (!/^[a-zA-ZÅÄÖåäö\s'-]+$/.test(nameValue)) {
+            nameError.textContent = 'Invalid format. Only letters, ÅÄÖ, hyphen, apostrophe, and spaces allowed.';
+            hasErrors = true;
+        }
+    };
 
-const validatePhoneNumber = () => {
-    const phoneNumberValue = phoneNumberInput.value.trim();
-    if (phoneNumberValue && !/^\+?\d{5,15}$/.test(phoneNumberValue)) {
-        phoneNumberError.textContent = 'Invalid phone number format. Only digits, optional leading "+" sign, and 5-15 digits allowed.';
-        hasErrors = true;
-    }
-};
+    var validateEmail = () => {
+        var emailValue = emailInput.value.trim();
+        if (!emailValue) {
+            emailError.textContent = 'Email is required';
+            hasErrors = true;
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailValue)) {
+            emailError.textContent = 'Invalid email format';
+            hasErrors = true;
+        }
+    };
 
-const validateCompanyName = () => {
-    const companyNameValue = companyNameInput.value.trim();
-    if (companyNameValue && !/^[a-zA-ZÅÄÖåäö\s'-]+$/.test(companyNameValue)) {
-        companyNameError.textContent = 'Invalid format. Only letters, ÅÄÖ, hyphen, apostrophe, and spaces allowed.';
-        hasErrors = true;
-    }
-};
+    var validatePhoneNumber = () => {
+        var phoneNumberValue = phoneNumberInput.value.trim();
+        if (phoneNumberValue && !/^\+?\d{5,15}$/.test(phoneNumberValue)) {
+            phoneNumberError.textContent = 'Invalid phone number format. Only digits, optional leading "+" sign, and 5-15 digits allowed.';
+            hasErrors = true;
+        }
+    };
 
-const validateMessage = () => {
-    const messageValue = messageInput.value.trim();
-    if (messageValue.length > 500) {
-        messageError.textContent = 'Message is too long. Maximum 500 characters allowed.';
-        hasErrors = true;
-    }
-};
+    var validateCompanyName = () => {
+        var companyNameValue = companyNameInput.value.trim();
+        if (companyNameValue && !/^[a-zA-ZÅÄÖåäö\s'-]+$/.test(companyNameValue)) {
+            companyNameError.textContent = 'Invalid format. Only letters, ÅÄÖ, hyphen, apostrophe, and spaces allowed.';
+            hasErrors = true;
+        }
+    };
 
-const validateAcceptedData = () => {
-    const acceptedDataValue = acceptedDataInput.checked;
-    if (!acceptedDataValue) {
-        acceptedDataError.textContent = 'You must accept data storage to proceed.';
-        hasErrors = true;
-    }
-};
+    var validateMessage = () => {
+        var messageValue = messageInput.value.trim();
+        if (messageValue.length > 500) {
+            messageError.textContent = 'Message is too long. Maximum 500 characters allowed.';
+            hasErrors = true;
+        }
+    };
 
-// Event listeners for direct feedback for the user
-nameInput.addEventListener('keyup', function () {
-    resetErrorMessages();
-    validateName();
-});
+    var validateAcceptedData = () => {
+        var acceptedDataValue = acceptedDataInput.checked;
+        if (!acceptedDataValue) {
+            acceptedDataError.textContent = 'You must accept data storage to proceed.';
+            hasErrors = true;
+        }
+    };
 
-emailInput.addEventListener('keyup', function () {
-    resetErrorMessages();
-    validateEmail();
-});
+    // Event listeners for direct feedback for user
+    nameInput.addEventListener('keyup', function () {
+        resetErrorMessages();
+        validateName();
+    });
 
-phoneNumberInput.addEventListener('keyup', function () {
-    resetErrorMessages();
-    validatePhoneNumber();
-});
+    emailInput.addEventListener('keyup', function () {
+        resetErrorMessages();
+        validateEmail();
+    });
+
+    phoneNumberInput.addEventListener('keyup', function () {
+        resetErrorMessages();
+        validatePhoneNumber();
+    });
+
+    // Event listeners for the optional fields
+
+    // Event listener for the form's submit event
+    formContact.addEventListener('submit', function (event) {
+        resetErrorMessages();
+        hasErrors = false;
+
+        validateName();
+        validateEmail();
+        validatePhoneNumber();
+        // ... Validation for other fields
+
+        if (hasErrors) {
+            event.preventDefault();
+        }
+    });
 
 
 
-// JS Validation LoginForm 
 
-const emailInput = document.getElementById("Email");
-const passwordInput = document.getElementById("Password");
-const emailError = document.getElementById("email-error");
-const passwordError = document.getElementById("password-error");
+//JS Validation LoginForm
 
-const validateLoginForm = () => {
-    let isValid = true;
+var formLogin = document.getElementById('formLogin');
 
-    // Reset error messages
-    emailError.innerText = "";
-    passwordError.innerText = "";
+var emailInput = document.getElementById("Email");
+var passwordInput = document.getElementById("Password");
+var emailError = document.getElementById("email-error");
+var passwordError = document.getElementById("password-error");
 
-    // Validate email
-    if (emailInput.value.trim() === "") {
-        emailError.innerText = "Email is required";
-        isValid = false;
-    } else if (!validateEmail(emailInput.value.trim())) {
-        emailError.innerText = "Invalid email format";
-        isValid = false;
-    }
 
-    // Validate password
-    if (passwordInput.value.trim() === "") {
-        passwordError.innerText = "Password is required";
-        isValid = false;
-    }
 
-    return isValid;
-};
+    var validateLoginForm = () => {
+        let isValid = true;
 
-const addEventListeners = () => {
-    emailInput.addEventListener("keyup", validateLoginForm);
-    passwordInput.addEventListener("keyup", validateLoginForm);
-};
+        // Reset error messages
+        emailError.innerText = "";
+        passwordError.innerText = "";
 
-// Call the function to add event listeners
-addEventListeners();
+        // Validates email
+        if (emailInput.value.trim() === "") {
+            emailError.innerText = "Email is required";
+            isValid = false;
+        } else if (!validateEmail(emailInput.value.trim())) {
+            emailError.innerText = "Invalid email format";
+            isValid = false;
+        }
+
+        // Validates password
+        if (passwordInput.value.trim() === "") {
+            passwordError.innerText = "Password is required";
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
+    var addEventListeners = () => {
+        emailInput.addEventListener("keyup", validateLoginForm);
+        passwordInput.addEventListener("keyup", validateLoginForm);
+    };
+
+    // Call the function to add event listeners
+    addEventListeners();
+
+    // Event listener for the form's submit event
+    formLogin.addEventListener("submit", function (event) {
+        if (!validateLoginForm()) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
+    });
+
+
+

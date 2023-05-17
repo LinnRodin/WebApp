@@ -24,34 +24,37 @@
         <div class="container">
             <div class="title">Please enter information</div>
 
-            <form asp-action="Contact" method="post" novalidate>
+            <form id="formContact" asp-action="Contact" method="post" novalidate>
                 <div class="name form-group">
                     <label asp-for="Name">Your Name*</label>
                     <input id="name" type="text" asp-for="Name" onkeyup="validateName()">
-                    <small><span asp-validation-for="Name" class="text-danger"></span></small>
+                    <small><span id="nameError" asp-validation-for="Name" class="text-danger"></span></small>
                 </div>
                 <div class="email form-group">
                     <label asp-for="Email">Your Email*</label>
                     <input id="email" type="email" asp-for="Email" onkeyup="validateEmail()">
-                    <small><span asp-validation-for="Email" class="text-danger"></span></small>
+                    <small><span id="emailError" asp-validation-for="Email" class="text-danger"></span></small>
                 </div>
                 <div class="phoneNumber form-group">
                     <label asp-for="PhoneNumber">Phone (optional)</label>
                     <input id="phone" type="text" asp-for="PhoneNumber" onkeyup="validatePhoneNumber()">
+                    <small><span id="phoneNumberError" class="text-danger"></span></small>
                 </div>
                 <div class="companyName form-group">
                     <label asp-for="CompanyName">Company(optional)</label>
                     <input id="company" type="text" asp-for="CompanyName" onkeyup="validateCompanyName()">
+                    <small><span id="companyNameError" class="text-danger"></span></small>
                 </div>
                 <div class="message form-group">
                     <label asp-for="Message">Message</label>
                     <textarea id="message" asp-for="Message" onkeyup="validateMessage()"></textarea>
+                    <small><span id="messageError" class="text-danger"></span></small>
                 </div>
                 <div class="terms form-checkbox-group">
                     <label asp-for="AcceptedData" class="custom-checkbox">
                         Save my name and email in this browser for the next time I comment.
                         <input type="checkbox" checked="checked" asp-for="AcceptedData" onkeyup="validateAcceptedData()">
-                        <span asp-validation-for="AcceptedData" class="text-danger checkmark"></span>
+                        <span id="acceptedDataError" asp-validation-for="AcceptedData" class="text-danger checkmark"></span>
                     </label>
                 </div>
                 <button class="btn-theme">Submit <i class="fa-solid fa-paintbrush-fine"></i></button>

@@ -168,9 +168,9 @@ var resetErrorMessages = () => {
 };
 
 
-    var validateName = () => {
-        var nameValue = nameInput.value.trim();
-        if (!nameValue) {
+var validateName = () => {                                             //First retrieves the value of the nameInput element (input field) and trims trailing whitespace from the value. The result is assigned to the nameValue variable. Then if (!nameValue) checks if its false so if its an empty string(name missing or not) or empty space. 
+    var nameValue = nameInput.value.trim();                           // Then we check the conditions like name is required(nameError), hasErrors = true that means if any validation errors has occured, it is set to true to indicate that an error has occured. else if (!/^[a-zA-ZÅÄÖåäö\s'-]+$/.test(nameValue)) { - If the previous condition is not met, this condition checks if nameValue does not match the specified regular expression. 
+    if (!nameValue) {                                                 //nameError.textContent = 'Invalid format. Only letters, ÅÄÖ, hyphen, apostrophe, and spaces allowed.'; - If nameValue does not match the pattern. Then hasErrors again to indicate if errors has been detected. 
             nameError.textContent = 'Name is required';
             hasErrors = true;
         } else if (!/^[a-zA-ZÅÄÖåäö\s'-]+$/.test(nameValue)) {
@@ -222,7 +222,7 @@ var resetErrorMessages = () => {
         }
     };
 
-    // Event listeners for direct feedback for user
+    // Event listeners for direct feedback for user with direct respons. 
     nameInput.addEventListener('keyup', function () {
         resetErrorMessages();
         validateName();
@@ -248,7 +248,7 @@ var resetErrorMessages = () => {
         validateName();
         validateEmail();
         validatePhoneNumber();
-        // ... Validation for other fields
+      
 
         if (hasErrors) {
             event.preventDefault();

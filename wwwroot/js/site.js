@@ -102,7 +102,7 @@ function validatePassword(selector, listener, minLength = 8) {
 }
 
 
-// Validates a confirm password
+// Validates a confirm password and matches it to the password input above. 
 function validateConfirmPassword(selector, listener, passwordSelector) {
     try {
         const element = document.querySelector(selector);
@@ -157,7 +157,7 @@ function handleSubmit(selector) {
 }
 
 
-// Handle form submission for the form
+// Handle form submission for the forms
 handleSubmit('#formRegistration')
 handleSubmit('#formContact')
 handleSubmit('#formLogin')

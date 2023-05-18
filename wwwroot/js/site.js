@@ -21,8 +21,9 @@
 
 
 
-// VALIDATION
+// VALIDATION FORMS (let or const is to be used in JS)
 
+// Function to set the error message for an element
 function setError(element, errorMsg) {
     const parent = element.parentNode
     const errorElement = parent.querySelector('small span')
@@ -31,7 +32,7 @@ function setError(element, errorMsg) {
 }
 
 
-
+// Function to clear the error message for an element
 function setSuccess(element) {
     const parent = element.parentNode
     const errorElement = parent.querySelector('small span')
@@ -43,7 +44,7 @@ function setSuccess(element) {
     errors = rest
 }
 
-
+//Validates text, firstname and lastname
 function validateText(selector, listener, minLength = 2,) {
     try {
         const element = document.querySelector(selector)
@@ -65,7 +66,7 @@ function validateText(selector, listener, minLength = 2,) {
 }
 
 
-
+//Validates an email
 function validateEmail(selector, listener) {
     try {
         const element = document.querySelector(selector)
@@ -84,7 +85,7 @@ function validateEmail(selector, listener) {
     catch { }
 }
 
-// Function to validate a password input element
+// Validates a password  
 function validatePassword(selector, listener, minLength = 8) {
     try {
         const element = document.querySelector(selector);
@@ -100,7 +101,7 @@ function validatePassword(selector, listener, minLength = 8) {
     } catch { }
 }
 
-
+// Validate a specific input element
 validateText('#firstname', 'keyup', 3)
 validateText('#lastname', 'keyup', 3)
 validateEmail('#email', 'keyup')
@@ -108,10 +109,10 @@ validateText('#name', 'keyup')
 validatePassword('#password', 'keyup');
 
 
-
+// Store errors in an object
 let errors = {}
 
-
+//Validation for when submitting the form
 
 function handleSubmit(selector) {
     const form = document.querySelector(selector)
@@ -135,7 +136,7 @@ function handleSubmit(selector) {
 }
 
 
-
+// Handle form submission for the form
 handleSubmit('#formRegistration')
 handleSubmit('#formContact')
 handleSubmit('#formLogin')

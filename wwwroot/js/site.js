@@ -101,12 +101,33 @@ function validatePassword(selector, listener, minLength = 8) {
     } catch { }
 }
 
+
+// Validates a confirm password
+function validateConfirmPassword(selector, listener, passwordSelector) {
+    try {
+        const element = document.querySelector(selector);
+        const passwordElement = document.querySelector(passwordSelector);
+
+        element.addEventListener(listener, () => {
+            if (element.value.length == 0) {
+                setError(element, `You need to enter a ${element.name}`);
+            } else if (element.value !== passwordElement.value) {
+                setError(element, `Passwords do not match`);
+            } else {
+                setSuccess(element);
+            }
+        });
+    } catch { }
+}
+
+
 // Validate a specific input element
 validateText('#firstname', 'keyup', 3)
 validateText('#lastname', 'keyup', 3)
 validateEmail('#email', 'keyup')
 validateText('#name', 'keyup')
 validatePassword('#password', 'keyup');
+validateConfirmPassword('#confirm-password', 'keyup', '#password');
 
 
 // Store errors in an object

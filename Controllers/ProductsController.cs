@@ -25,7 +25,7 @@ namespace WebApp.Controllers
                 AllProducts = new GridCollectionViewModel
                 {
                     Title = "All Products",
-                    GridCards = await _productService.GetAllProductsAsync()
+                    GridCards = await _productService.GetAllProductsAsync()  // Hämtar alla produkter genom att anropa GetAllProductsAsync-metoden i ProductService.
                 }
             };
 
@@ -36,14 +36,14 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var product = await _productService.GetProductByIdAsync(id);
+            var product = await _productService.GetProductByIdAsync(id); // Hämtar produkten via id:et genom att anropa GetProductByIdAsync-metoden i ProductService.
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            var viewModel = new ProductDetailsViewModel
+            var viewModel = new ProductDetailsViewModel // Skapar en instans av ProductDetailsViewModel för att visa detaljer om produkten.
             {
                 Id = Convert.ToInt32(product.Id),
                 Name = product.Title,
@@ -51,8 +51,8 @@ namespace WebApp.Controllers
                 ImageUrl = product.ImageUrl,
                 Description = product.Description,
                 CategoryId = product.Category?.Id,
-                RelatedDetailsList = await _productService.GetProductsAmountDetailsAsync(4) // Gets 4 products from list in ProductDetailsViewModel. 
-                
+                RelatedDetailsList = await _productService.GetProductsAmountDetailsAsync(4) // Hämtar en lista med relaterade produktdetaljer genom att anropa GetProductsAmountDetailsAsync-metoden i ProductService.
+
             };
 
             return View(viewModel);

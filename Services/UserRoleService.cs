@@ -16,6 +16,7 @@ namespace WebApp.Services
             _userManager = userManager;
         }
 
+        //Hämtar alla användare och deras roller. 
         public async Task<List<UserRoleViewModel>> GetAllUsersWithRolesAsync()
         {
             var users = await _userManager.Users.ToListAsync();

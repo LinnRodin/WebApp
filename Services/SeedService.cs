@@ -11,13 +11,13 @@ namespace WebApp.Services
         {
             _roleManager = roleManager;
         }
-
+        // Metod för att skapa roller vid seedning av databasen.
         public async Task SeedRoles()
-        {
-            if (!await _roleManager.RoleExistsAsync("admin"))
+        {   
+            if (!await _roleManager.RoleExistsAsync("admin"))                // Kontrollerar om rollen "admin" redan finns, om inte skapas den.
                 await _roleManager.CreateAsync(new IdentityRole("admin"));
 
-            if (!await _roleManager.RoleExistsAsync("user"))
+            if (!await _roleManager.RoleExistsAsync("user"))                 // Kontrollerar om rollen "user" redan finns, om inte skapas den.
                 await _roleManager.CreateAsync(new IdentityRole("user"));
         }
     }

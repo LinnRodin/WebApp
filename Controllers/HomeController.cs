@@ -19,31 +19,31 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
 
-        var viewModel = new HomeIndexViewModel
+        var viewModel = new HomeIndexViewModel // Skapar en instans av HomeIndexViewModel som används som modell i vyn.
         {
-            BestCollection = new GridCollectionViewModel
+            BestCollection = new GridCollectionViewModel  // Skapar en instans av GridCollectionViewModel för att visa "BestCollection" produkterna. 
             {
                 Title = "Best Collection",
                 Categories = new List<string> { "All", "Bags", "Dresses", "Decorations", "Essentials", "Interior", "Laptops", "Mobile", "MakeUp" },
-                GridCards = await _productService.GetProductsAmountByCategoryAsync("Featured", 8)
+                GridCards = await _productService.GetProductsAmountByCategoryAsync("Featured", 8)  // Hämtar ett visst antal produkter för den angivna kategorin "Featured" genom att anropa GetProductsAmountByCategoryAsync-metoden i ProductService.
             },
 
-            UpToSale = new GridCollectionViewModel
+            UpToSale = new GridCollectionViewModel // Skapar en instans av GridCollectionViewModel för att visa "UpToSale" produkterna. 
             {
                 Title = "UpToSale",
-                GridCards = await _productService.GetProductsAmountByCategoryAsync("New", 3)
+                GridCards = await _productService.GetProductsAmountByCategoryAsync("New", 3) // Hämtar ett visst antal produkter för den angivna kategorin "New" genom att anropa GetProductsAmountByCategoryAsync-metoden i ProductService.
             },
 
-            TopSellProducts = new GridCollectionViewModel
+            TopSellProducts = new GridCollectionViewModel // Skapar en instans av GridCollectionViewModel för att visa "TopSellProducts" produkterna. 
             {
                 Title = "TopSellProducts",
                 GridCards = await _productService.GetProductsAmountByCategoryAsync("Popular", 7)
             },
 
-            TopProducts = new GridCollectionViewModel
+            TopProducts = new GridCollectionViewModel  // Skapar en instans av GridCollectionViewModel för att visa "TopProducts" produkterna. 
             {
                 Title = "TopProducts",
-                GridCards = await _productService.GetProductsAmountByCategoryAsync("Popular", 3)
+                GridCards = await _productService.GetProductsAmountByCategoryAsync("Popular", 3) // Hämtar ett visst antal produkter för den angivna kategorin "Popular" genom att anropa GetProductsAmountByCategoryAsync-metoden i ProductService.
             }
 
         };

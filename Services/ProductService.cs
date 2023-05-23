@@ -16,7 +16,7 @@ namespace WebApp.Services
         {
             _context = context;
         }
-
+        // Hämtar alla produkter med tillhörande kategori och konverterar dem till en lista av GridCollectionItemViewModel.
         public async Task<List<GridCollectionItemViewModel>> GetAllProductsAsync()
         {
             var products = await _context.Products
@@ -27,6 +27,7 @@ namespace WebApp.Services
             return products;
         }
 
+        // Hämtar ett angivet antal produkter av en viss kategori med tillhörande kategori och konverterar dem till en lista av GridCollectionItemViewModel.
         public async Task<List<GridCollectionItemViewModel>> GetProductsAmountByCategoryAsync(string categoryName, int numberOfProducts)
         {
                  var Products = await _context.Products
@@ -38,6 +39,7 @@ namespace WebApp.Services
                     return Products;
         }
 
+        // Hämtar ett angivet antal produkter med tillhörande kategori och konverterar dem till en lista av GridCollectionItemViewModel.
         public async Task<List<GridCollectionItemViewModel>> GetProductsAmountDetailsAsync( int numberOfProducts)
         {
             var Products = await _context.Products
@@ -48,6 +50,7 @@ namespace WebApp.Services
             return Products;
         }
 
+        // Hämtar en produkt med en specifik ID och tillhörande kategori som en GridCollectionItemViewModel.
         public async Task<GridCollectionItemViewModel> GetProductByIdAsync(int id)
         {
             var product = await _context.Products
@@ -60,7 +63,7 @@ namespace WebApp.Services
         }
 
 
-
+        // Uppdaterar en produkt via specifikt ID.
         public async Task UpdateProductAsync(int id, GridCollectionItemViewModel updatedProduct)
         {
             var product = await _context.Products.FindAsync(id);
@@ -83,7 +86,7 @@ namespace WebApp.Services
         }
 
 
-
+        // Tar bort en produkt via specifikt ID.
         public async Task DeleteProductAsync(int id)
         {
             var product = await _context.Products.FindAsync(id);

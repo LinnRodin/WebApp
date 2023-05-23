@@ -14,9 +14,10 @@ public class ContactService
         _context = context;
     }
 
+    // Metod för att lägga till en kontakt i databasen.
     public void AddContact(ContactsViewModel contactsViewModel)
-    {
-        ContactEntity contactEntity = new ContactEntity()
+    {   
+        ContactEntity contactEntity = new ContactEntity()   // Skapar en ny instans av ContactEntity och fyller i kontaktinformationen från ContactsViewModel.
         {
             Name = contactsViewModel.Name,
             Email = contactsViewModel.Email,
@@ -25,7 +26,7 @@ public class ContactService
             Message = contactsViewModel.Message
         };
 
-        _context.Contacts.Add(contactEntity);
-        _context.SaveChanges();
+        _context.Contacts.Add(contactEntity);   // Lägger till contactEntity i databasen genom att använda DbSet Add.
+        _context.SaveChanges();                 // Sparar
     }
 }

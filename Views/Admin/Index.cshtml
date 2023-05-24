@@ -23,3 +23,21 @@
         }
     </tbody>
 </table>
+
+@*// Formulär för att ändra användarroll - lägg in
+<form asp-action="UpdateUserRole" asp-controller="Admin" method="post">
+    <input type="hidden" name="userId" value="@userRole.IdentityUser" />
+    <select name="newRole">
+        <option value="Admin">Admin</option>
+        <option value="User">User</option>
+        <option value="ProjectManager">Project Manager</option>
+    </select>
+    <button type="submit">Update</button>
+</form>
+
+ // Formulär för att lägga till användarroll 
+<form asp-action="AddUserRole" asp-controller="Admin" method="post">
+    <input type="hidden" name="userId" value="@userRole.IdentityUser" />
+    <input type="text" name="role" placeholder="Role" />
+    <button type="submit">Add</button>
+</form> *@

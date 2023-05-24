@@ -22,6 +22,41 @@ namespace WebApp.Controllers
 
             return View(userRoleList);  // Returnerar vyn med listan. 
         }
+
+
+        // VG delar för att ändra och lägga till roller. 
+
+        //[HttpPost]
+        //public async Task<IActionResult> UpdateUserRole(string userId, string newRole)
+        //{
+        //    var result = await _userRoleService.UpdateUserRoleAsync(userId, newRole);
+        //    if (result)
+        //        return RedirectToAction("Index");
+
+        //    // Handle error case
+        //    return RedirectToAction("Index");
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> AddUserRole(string userId, string role)
+        //{
+        //    var result = await _userRoleService.AddUserRoleAsync(userId, role);
+        //    if (result)
+        //        return RedirectToAction("Index");
+
+        //    // Handle error case
+        //    return RedirectToAction("Index");
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> CreateRoleAsync(string roleName)
+        //{
+        //    var result = await _userRoleService.CreateRoleAsync(roleName);
+        //    if (result)
+        //        return RedirectToAction("Index");
+
+        //    // Handle error case
+        //    return RedirectToAction("Index");
+        //}
+
     }
 
 }

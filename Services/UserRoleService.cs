@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using WebApp.ViewModels;
 
 namespace WebApp.Services
@@ -34,6 +36,54 @@ namespace WebApp.Services
         }
 
 
+
+        //VG Delar
+
+        // Lägger till en helt ny användare
+
+        //public async Task<bool> CreateRoleAsync(string roleName)
+        //{
+        //    var roleExists = await _roleManager.RoleExistsAsync(roleName);
+        //    if (roleExists)
+        //        return false;
+
+        //    var role = new IdentityRole(roleName);
+        //    var result = await _roleManager.CreateAsync(role);
+
+        //    return result.Succeeded;
+        //}
+
+
+
+        //// Uppdaterar/ändrar användarroll för en användare
+
+        //public async Task<bool> UpdateUserRoleAsync(string userId, string newRole)
+        //{
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    if (user == null)
+        //        return false;
+
+        //    var currentRoles = await _userManager.GetRolesAsync(user);
+        //    await _userManager.RemoveFromRolesAsync(user, currentRoles.ToArray());
+        //    await _userManager.AddToRoleAsync(user, newRole);
+
+        //    return true;
+        //}
+
+        // Lägger till en användarroll för en existerande användare
+
+        //public async Task<bool> AddUserRoleAsync(string userId, string role)
+        //{
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    if (user == null)
+        //        return false;
+
+        //    await _userManager.AddToRoleAsync(user, role);
+
+        //    return true;
+        //}
+
+     
 
 
     }

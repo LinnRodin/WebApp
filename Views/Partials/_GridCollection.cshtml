@@ -8,13 +8,13 @@
         <div class="container">
             @if (!string.IsNullOrEmpty(Model.Title))
             {
-                <h1 class="collection-title">@Model.Title</h1>
+                <h1 class="collection-title">@Model.Title</h1>   // Kontrollerar om en titel har angetts och renderar den. 
             }
             
             @if (Model.Categories != null)
             {
                 <ul class="categories">
-                    @foreach (var category in Model.Categories)
+                    @foreach (var category in Model.Categories)     // Kontrollerar om kategorier finns och renderar dem i en lista.
                     {
                         <li class="category-item">@category</li>
                     }
@@ -22,7 +22,7 @@
                 </ul>
             }
 
-            @if (Model.GridCards != null)
+            @if (Model.GridCards != null)       // Kontrollerar om GridCards finns och renderar dem.
             {
                 <div class="collection-grid">
                     @foreach (var item in Model.GridCards)
@@ -31,7 +31,7 @@
                     }
                 </div>
             }
-            @if (Model.LoadMore)
+            @if (Model.LoadMore)        // Kontrollerar om LoadMore är true och renderar.
             {
                 <div class="load-more">
                     <button class="btn-white">LOAD MORE <i class="fa-solid fa-rotate-right"></i></button>

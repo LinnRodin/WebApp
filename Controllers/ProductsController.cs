@@ -51,8 +51,8 @@ namespace WebApp.Controllers
                 ImageUrl = product.ImageUrl,
                 Description = product.Description,
                 CategoryId = product.Category?.Id,
-                RelatedDetailsList = await _productService.GetProductsAmountDetailsAsync(4) // Hämtar en lista med relaterade produktdetaljer genom att anropa GetProductsAmountDetailsAsync-metoden i ProductService.
-
+                RelatedDetailsList = await _productService.GetProductsAmountDetailsAsync(4) // Hämtar en lista med relaterade produktdetaljer genom att anropa GetProductsAmountDetailsAsync-metoden i ProductService. 
+                                                                                           //Om jag vill ha en allmän metod som jag skall kunna hämta ut olika antal ifrån till en vy tar jag bara bort 4 och kör Take i vyn (Detailsvyn i detta fall) 
             };
 
             return View(viewModel);

@@ -1,4 +1,6 @@
-﻿namespace WebApp.ViewModels
+﻿using WebApp.Models.Entities;
+
+namespace WebApp.ViewModels
 {
     public class ProductDetailsViewModel
     {
@@ -9,7 +11,7 @@
         public string? Description { get; set; }
 
         public int? CategoryId { get; set; }
-        public CategoryViewModel? Category { get; set; }
+        public CategoryEntity? Category { get; set; }
 
         public List<GridCollectionItemViewModel> RelatedDetailsList { get; set; } = new List<GridCollectionItemViewModel>();
 

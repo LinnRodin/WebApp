@@ -14,16 +14,12 @@
 <div class="product-grid">
     <div class="container">
         <div class="product-images">
-            <img src="images/placeholders/gumshoesbig.png" alt="Product big">
+            <img src="@Model.ImageUrl" alt="Product big">
             <div class="products-images-small">
-                @if (Model.RelatedDetailsList != null)
-                {
-                    @foreach (var item in Model.RelatedDetailsList)     //Här kan jag använda mig av Take(4) också istället för i metoden direkt. I detta fall loopar jag ut samma cards men vill jag ha olika innehåll (discount,sale osv) kan jag tex. bygga olika modeller för olika sektioner och använda flaggor för vad jag vill visa (booleska värden - true or false) men även använda mig av tags. 
-                    {
-                        <partial name="/Views/Partials/_GridCollectionItem.cshtml" model="item" />
-                    }
-
-                }
+                <img src="@Model.ImageUrl" />
+                <img src="@Model.ImageUrl" />
+                <img src="@Model.ImageUrl" />
+                <img src="@Model.ImageUrl" />
             </div>
         </div>
         <div class="product-details">
@@ -51,7 +47,10 @@
                     <p> SKU N/A</p>
                 </div>
                 <button class="wish">Add to wishlist</button>
-                <div class="small-description"> Category: @Model.Category.Name</div>
+               @if(Model.Category is not null )
+               {
+                 <div class="small-description"> Category: @Model.Category.Name</div>
+               }
             </div>
         </div>
     </div>
@@ -118,7 +117,7 @@
 <section class="imagedisplay-end">
     <div class="container">
         <div class="display-end-grid">
-            <img src="images/placeholders/minimalbeige.png" alt="">
+            <img src="images/placeholders/minimalbeige.png" alt=""> 
             <img src="images/placeholders/minimaldesign.png" alt="">
             <img src="images/placeholders/minimalbeige.png" alt="">
             <img src="images/placeholders/woocolcon.png" alt="">
@@ -126,22 +125,6 @@
         </div>
     </div>
 </section>
-
-@* //Om jag vill bygga om till att mata ut 5stk cards här i sista sektionen istället kan jag använda koden nedan och ändra i controllern till en mer allmän metod än för fyra som jag byggt: 
-
-<section class="imagedisplay-end">
-    <div class="container">
-        <div class="display-end-grid">
-            @if (Model.RelatedDetailsList != null)
-            {
-                @foreach (var item in Model.RelatedDetailsList.Take(5))
-                {
-                    <img src="@item.ImageUrl" alt="">
-                }
-            }
-        </div>
-    </div>
-</section>*@
 
 <!-- section six image section imagedisplay-end, end -->
 

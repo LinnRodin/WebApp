@@ -894,7 +894,7 @@ input:valid {
   margin-top: 10px;
 }
 .product-grid .container .products-images-small img {
-  max-width: 100%;
+  max-width: 20%;
   height: auto;
 }
 .product-grid .container .product-details {
